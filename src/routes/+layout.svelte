@@ -1,6 +1,6 @@
 <script>
-	import Header from './Header.svelte';
 	import '../app.css';
+	import Header from './Header.svelte';
 </script>
 
 <div class="app">
@@ -11,7 +11,7 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<p>Built with Svelte and Tailwind</p>
 	</footer>
 </div>
 

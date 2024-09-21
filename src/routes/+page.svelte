@@ -11,7 +11,7 @@
 <section>
 	<div class="hero">
 		<div class="hero-content flex-col lg:flex-row">
-			<picture class="pr-56"
+			<picture
 				><img
 					src={portrait}
 					class="max-w-lg rounded-lg shadow-2xl mask mask-hexagon-2 bg-warning"
@@ -34,7 +34,7 @@
 	section {
 		display: flex;
 		flex-direction: column;
-		margin-top: 6rem;
+		margin-top: 4rem;
 		flex: 0.6;
 	}
 
@@ -44,7 +44,7 @@
 
 	.banner {
 		position: absolute;
-		top: 16rem;
+		top: 14rem;
 		left: 0;
 		min-width: 95vw;
 		height: 20rem;
