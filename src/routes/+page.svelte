@@ -1,66 +1,124 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
+	// Import all section components
+	import About from './About.svelte';
+	import Contact from './Contact.svelte';
+	import Experience from './Experience.svelte';
 	import Hero from './Hero.svelte';
 	import Highlights from './Highlights.svelte';
-	let visible;
+	import Projects from './Projects.svelte';
+	import Skills from './Skills.svelte';
+
+	// SEO metadata
+	const seoTitle = 'Lucas Spain | Software Engineer & AI Specialist';
+	const seoDescription =
+		'Portfolio of Lucas Spain, a software engineer specializing in AI solutions, full-stack development, and infrastructure operations.';
+	const seoKeywords =
+		'software engineer, AI, LangChain, LangGraph, full stack developer, portfolio, Lucas Spain';
+
+	let visible = false;
 
 	onMount(() => {
 		visible = true;
+
+		// Initialize scroll animations
+		const animateOnScroll = () => {
+			const elements = document.querySelectorAll('.animate-on-scroll');
+
+			elements.forEach((element) => {
+				const elementTop = element.getBoundingClientRect().top;
+				const elementBottom = element.getBoundingClientRect().bottom;
+
+				// Check if element is in viewport
+				if (elementTop < window.innerHeight && elementBottom > 0) {
+					element.classList.add('visible');
+				}
+			});
+		};
+
+		// Run on initial load
+		animateOnScroll();
+
+		// Add scroll event listener
+		window.addEventListener('scroll', animateOnScroll);
+
+		// Clean up event listener
+		return () => {
+			window.removeEventListener('scroll', animateOnScroll);
+		};
 	});
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Portfolio App for Lucas" />
+	<title>{seoTitle}</title>
+	<meta name="description" content={seoDescription} />
+	<meta name="keywords" content={seoKeywords} />
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content={seoTitle} />
+	<meta property="og:description" content={seoDescription} />
+	<meta property="og:image" content="/og-image.jpg" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content={seoTitle} />
+	<meta name="twitter:description" content={seoDescription} />
+	<meta name="twitter:image" content="/og-image.jpg" />
+
+	<!-- Structured Data for SEO -->
+	<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Lucas Spain",
+			"url": "https://lucasspain.com",
+			"jobTitle": "Software Engineer",
+			"worksFor": {
+				"@type": "Organization",
+				"name": "TechInnovate AI"
+			},
+			"description": "Software Engineer specializing in AI solutions, full-stack development, and infrastructure operations.",
+			"sameAs": [
+				"https://github.com/yourusername",
+				"https://linkedin.com/in/yourusername",
+				"https://twitter.com/yourusername"
+			],
+			"knowsAbout": [
+				"LangChain",
+				"LangGraph",
+				"Vector Databases",
+				"RAG Systems",
+				"Full Stack Development",
+				"Cloud Infrastructure"
+			]
+		}
+	</script>
 </svelte:head>
 
-<Hero />
-<Highlights />
+<!-- Main content -->
 {#if visible}
-	<div class="fill-vw flex justify-center pt-8 pb-4" transition:fly={{ y: 100, duration: 2000 }}>
-		<h2 class="text-5xl font-bold">Work Experience</h2>
-	</div>
-	<div class="fill-vw flex justify-start bg-slate-500" transition:fly={{ y: 100, duration: 2000 }}>
-		<div class="p-16">
-			<p class="text-sm">
-				Lorem ipsum odor amet, consectetuer adipiscing elit. Cursus feugiat vel erat suspendisse
-				tempus facilisi nam. Venenatis porta ultrices bibendum aliquam diam lacinia. Rutrum netus
-				dapibus tortor curae tincidunt nibh proin per efficitur. Auctor vestibulum euismod
-				scelerisque fringilla sit tincidunt vulputate litora nulla. Ante dis lectus purus feugiat
-				integer hac.Vulputate tortor rhoncus vitae mollis aliquam. Lacus euismod porta diam suscipit
-				vitae nascetur ultricies eu. Nostra praesent duis maecenas primis orci tincidunt. Metus
-				penatibus etiam molestie efficitur nibh tincidunt eleifend blandit. Vitae magnis vivamus
-				turpis vitae faucibus faucibus. Vivamus conubia cras tortor tempor amet montes. Mattis
-				interdum maecenas gravida fames magnis sociosqu placerat ultricies. Porttitor ipsum lacus
-				hendrerit torquent non imperdiet nec augue himenaeos. Gravida vitae aptent curabitur
-				senectus nostra porttitor suspendisse dolor himenaeos. Inceptos ut lorem diam a venenatis
-				magnis a. Penatibus cursus lacinia nibh leo condimentum finibus mauris. Venenatis
-				consectetur maximus ultrices fermentum pretium senectus semper. Semper iaculis risus finibus
-				ligula ante hendrerit commodo! Semper vivamus ac quisque interdum vehicula. Mauris sed vitae
-				ultricies conubia magnis nostra in. Odio aptent laoreet elementum nec eget mus varius.
-				Bibendum per aliquet in odio ante mauris ultrices cursus praesent. Netus sollicitudin
-				sollicitudin ultricies donec; feugiat pharetra. Tellus volutpat mattis interdum; ex vel
-				pretium. Ac ac dapibus dolor mauris ornare risus a ac erat. Ultricies habitant lectus
-				aliquam penatibus diam dignissim imperdiet. Nisl aenean dui mauris penatibus maximus. In
-				dignissim odio, cras commodo lectus fermentum mauris. Mus lorem dolor purus finibus sociosqu
-				velit lacus malesuada magnis. Ad nascetur convallis aptent, class orci senectus. Amet dis
-				lobortis natoque euismod mollis rhoncus risus? Ornare finibus parturient gravida ornare
-				scelerisque varius. Ultrices dolor luctus vestibulum sociosqu leo varius parturient placerat
-				taciti. Elit magna adipiscing fames dictum fusce. Nostra ligula tempus morbi habitasse
-				lacinia mauris sociosqu interdum morbi. Blandit maximus risus fames tellus, nam convallis
-				dolor. Nascetur primis laoreet magnis tempor senectus. Facilisi convallis ad augue sodales
-				imperdiet. Euismod habitasse etiam gravida metus ullamcorper ullamcorper nulla malesuada.
-				Aliquam blandit ultricies aliquet litora varius. Arcu egestas montes vitae nulla curabitur
-				porttitor; a faucibus morbi. Viverra tempus porta tristique nostra neque mollis.
-			</p>
-		</div>
+	<div in:fade={{ duration: 300 }}>
+		<!-- Hero Section -->
+		<Hero />
+
+		<!-- About Section -->
+		<About />
+
+		<!-- Highlights Section -->
+		<Highlights />
+
+		<!-- Skills Section -->
+		<Skills />
+
+		<!-- Projects Section -->
+		<Projects />
+
+		<!-- Experience Section -->
+		<Experience />
+
+		<!-- Contact Section -->
+		<Contact />
 	</div>
 {/if}
-
-<style>
-	.fill-vw {
-		min-width: 100vw;
-		max-width: 100vw;
-	}
-</style>
