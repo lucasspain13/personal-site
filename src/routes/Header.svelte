@@ -4,10 +4,9 @@
 	import { onMount } from 'svelte';
 	import { fade, fly, slide } from 'svelte/transition';
 	import { clickAway } from '../actions';
-	let isHovered = false;
 	let isClicked = false;
 	let visible = false;
-	$: isOpen = isClicked || isHovered;
+	$: isOpen = isClicked;
 
 	const links = [
 		{ href: '#about', name: 'About' },
@@ -21,53 +20,64 @@
 		visible = true;
 		console.log('Header mounted: layout debug active');
 	});
+	let menuEl = null;
 </script>
 
 {#if visible}
-	<div class="sticky top-0 z-50 backdrop-blur-sm shadow-sm">
-		<div class="navbar bg-base-100 bg-opacity-80 pt-4" transition:fly={{ y: -200, duration: 2000 }}>
-			<div class="navbar-start">
-				<!-- Navigation Links for Desktop -->
-				<div class="hidden md:flex items-center gap-1">
-					{#each links as link, i}
-						<a
-							href={link.href}
-							class="btn btn-ghost btn-sm hover:bg-primary hover:text-white transition-colors duration-300"
-							in:fade={{ delay: 100 * i, duration: 300 }}
-						>
-							{link.name}
-						</a>
-					{/each}
-				</div>
-			</div>
-			<div class="navbar-end flex items-center pr-8">
-				<div class="flex ml-auto gap-x-4 items-center">
-					<div class="divider divider-horizontal hidden md:flex ml-2"></div>
-					<div in:fade={{ delay: 500, duration: 300 }}>
-						<ThemeToggle />
-					</div>
+	<div class="sticky top-0 z-50 w-full backdrop-blur-sm shadow-sm">
+		<div
+			class="flex justify-between items-center bg-base-100 bg-opacity-80 pt-4 pb-3 w-full rounded-xl shadow-sm backdrop-blur-sm"
+			transition:fly={{ y: -200, duration: 2000 }}
+		>
+			<!-- Left section: Desktop nav links -->
+			<div class="hidden md:flex items-center gap-1">
+				{#each links as link, i}
 					<a
-						href="#contact"
-						tabindex="0"
-						role="button"
-						class="btn btn-primary hover:scale-105 transition-transform duration-300"
-						in:fade={{ delay: 600, duration: 300 }}
+						href={link.href}
+						class="btn btn-ghost btn-sm hover:bg-primary hover:text-white transition-colors duration-300"
+						in:fade={{ delay: 100 * i, duration: 300 }}
 					>
-						<p class="text-sm font-medium p-1">Contact Me</p>
+						{link.name}
 					</a>
+				{/each}
+			</div>
+			<!-- Right section: ThemeToggle, Contact, Hamburger -->
+			<div
+				class="flex flex-row flex-nowrap items-center gap-x-4 w-full md:w-auto justify-end pr-4 md:pr-8"
+			>
+				<div class="divider divider-horizontal hidden md:flex ml-2"></div>
+				<div in:fade={{ delay: 500, duration: 300 }}>
+					<ThemeToggle />
 				</div>
+				<a
+					href="#contact"
+					tabindex="0"
+					role="button"
+					class="btn btn-primary hover:scale-105 transition-transform duration-300"
+					in:fade={{ delay: 600, duration: 300 }}
+				>
+					<p class="text-sm font-medium p-1">Contact Me</p>
+				</a>
 				<!-- Mobile Menu -->
 				<div
-					class="dropdown dropdown-end md:hidden"
+					class="dropdown md:hidden"
 					role="menu"
 					tabindex="0"
-					on:mouseenter={() => (isHovered = true)}
-					on:mouseleave={() => (isHovered = false)}
-					on:mousedown={() => (isClicked = true)}
-					use:clickAway={() => (isClicked = false)}
+					use:clickAway={() => {
+						console.log('clickAway fired', { isClicked, event: window.event });
+						isClicked = false;
+					}}
 					in:fade={{ delay: 700, duration: 300 }}
 				>
-					<div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+					<div
+						tabindex="0"
+						role="button"
+						class="btn btn-ghost btn-circle"
+						on:mousedown={() => {
+							console.log('hamburger mousedown', { isClicked, event: window.event });
+							isClicked = !isClicked;
+						}}
+					>
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
@@ -82,50 +92,24 @@
 								d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
 							/>
 						</svg>
-						{#if !isOpen}
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								class="size-5"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="m19.5 8.25-7.5 7.5-7.5-7.5"
-								/>
-							</svg>
-						{:else}
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								class="size-5"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="m4.5 15.75 7.5-7.5 7.5 7.5"
-								/>
-							</svg>
-						{/if}
 					</div>
-					<ul class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 shadow-lg mt-2 p-2">
-						{#each links as link}
-							<li>
-								<a
-									href={link.href}
-									class="hover:bg-primary hover:text-white transition-colors duration-300"
-								>
-									{link.name}
-								</a>
-							</li>
-						{/each}
-					</ul>
+					{#if isOpen}
+						<ul
+							class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 shadow-lg mt-2 p-2 right-0"
+							bind:this={menuEl}
+						>
+							{#each links as link}
+								<li>
+									<a
+										href={link.href}
+										class="hover:bg-primary hover:text-white transition-colors duration-300"
+									>
+										{link.name}
+									</a>
+								</li>
+							{/each}
+						</ul>
+					{/if}
 				</div>
 			</div>
 		</div>

@@ -221,9 +221,9 @@
 		<div class="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-primary/20 blur-3xl"></div>
 	</div>
 
-	<div class="container mx-auto px-4 relative z-10">
+	<div class="container mx-auto sm:px-2 px-0 relative z-10">
 		<div
-			class="hero-content flex flex-col lg:flex-row-reverse gap-8 lg:gap-16 items-center justify-center"
+			class="hero-content flex flex-col items-center justify-center text-center lg:flex-row-reverse lg:items-center lg:justify-center lg:text-left gap-8 lg:gap-16"
 		>
 			<!-- Portrait image -->
 			<div
@@ -250,7 +250,9 @@
 			</div>
 
 			<!-- Text content -->
-			<div class="text-content max-w-2xl text-center lg:text-left lg:w-1/2">
+			<div
+				class="text-content max-w-2xl w-full text-center lg:text-left lg:w-1/2 flex flex-col items-center lg:items-start"
+			>
 				<!-- Main heading with typing effect -->
 				<div class="typing-container mb-2">
 					<h1 class="text-4xl md:text-6xl font-bold text-primary">
@@ -314,7 +316,7 @@
 				<!-- Social links -->
 				{#if showSocial}
 					<div
-						class="social-links"
+						class="social-links w-full flex justify-center lg:justify-start"
 						use:staggerChildren={{ selector: '.social-item', staggerTime: 100 }}
 					>
 						{#each socialLinks as link, i}
@@ -337,7 +339,7 @@
 	<!-- Down chevron scroll indicator, absolutely positioned at bottom center -->
 	<a
 		href="#about"
-		class="absolute left-1/2 -translate-x-1/2 bottom-4 lg:bottom-8 text-primary opacity-80 hover:opacity-100 transition-opacity animate-bounce z-20"
+		class="absolute inset-x-0 mx-auto bottom-4 lg:bottom-8 flex justify-center text-primary opacity-80 hover:opacity-100 transition-opacity animate-bounce z-20"
 		aria-label="Scroll Down"
 	>
 		<svg

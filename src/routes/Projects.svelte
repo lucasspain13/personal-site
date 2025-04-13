@@ -448,6 +448,27 @@
 		display: flex;
 		flex-direction: column;
 		will-change: transform, opacity, filter;
+		min-height: 30rem; /* Slightly shorter than before, but still taller than original */
+		/* DEBUG: background-color for validation, remove after confirming */
+		background-color: rgba(255, 255, 0, 0.04);
+	}
+
+	/* --- MOBILE FIX FOR FLEX WRAP AND IMAGE --- */
+	@media (max-width: 640px) {
+		.project-card {
+			flex-wrap: nowrap !important;
+			flex-direction: column !important;
+		}
+		.project-card > figure {
+			width: 100% !important;
+		}
+		.project-card img {
+			width: 100% !important;
+			height: 12rem !important; /* 48px * 4 = 192px, matches h-48 */
+			object-fit: cover !important;
+			margin: 0 auto !important;
+			display: block !important;
+		}
 	}
 
 	.project-card.card-active:hover {

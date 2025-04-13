@@ -32,7 +32,7 @@
 
 <SEO />
 
-<div class="app min-h-screen flex flex-col bg-base-100 text-base-content w-full overflow-x-hidden">
+<div class="app min-h-screen flex flex-col bg-base-100 text-base-content w-full">
 	<Header />
 
 	<main class="flex-1 w-full">

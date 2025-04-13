@@ -35,7 +35,7 @@
 		},
 		{
 			type: 'LinkedIn',
-			value: 'https://www.linkedin.com/in/lucas-spain-24189715a',
+			value: 'Lucas Spain',
 			icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`,
 			link: 'https://www.linkedin.com/in/lucas-spain-24189715a'
 		},
@@ -287,25 +287,29 @@
 						<ul class="space-y-6">
 							{#each contactInfo as info, i}
 								<li
-									class="flex flex-wrap sm:flex-nowrap items-center"
+									class="flex flex-row items-center gap-4 flex-nowrap"
 									in:fly={{ y: 10, duration: 300, delay: i * 100 }}
 								>
 									<div
-										class="w-12 h-12 sm:w-12 sm:h-12 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content mr-4 shadow-md"
+										class="w-12 h-12 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center text-primary-content shadow-md flex-shrink-0"
 									>
 										{@html info.icon}
 									</div>
-									<div class="min-w-0 w-full max-w-full">
-										<h4 class="font-semibold">{info.type}</h4>
-										<a
-											href={info.link}
-											target="_blank"
-											rel="noopener noreferrer"
-											class="text-primary hover:underline block max-w-full break-all text-xs sm:text-sm"
-											title={info.value}
-										>
-											{info.value}
-										</a>
+									<div class="flex flex-row items-center gap-2 min-w-0">
+										<span class="font-semibold whitespace-nowrap">{info.type}:</span>
+										{#if info.link}
+											<a
+												href={info.link}
+												target="_blank"
+												rel="noopener noreferrer"
+												class="text-primary hover:underline truncate max-w-[180px] sm:max-w-[240px] text-xs sm:text-sm"
+												title={info.value}
+											>
+												{info.value}
+											</a>
+										{:else}
+											<span class="truncate text-xs sm:text-sm">{info.value}</span>
+										{/if}
 									</div>
 								</li>
 							{/each}
