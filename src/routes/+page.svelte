@@ -10,7 +10,6 @@
 	import Projects from './Projects.svelte';
 	import Skills from './Skills.svelte';
 
-	// SEO metadata
 	const seoTitle = 'Lucas Spain | Software Engineer & AI Specialist';
 	const seoDescription =
 		'Portfolio of Lucas Spain, a software engineer specializing in AI solutions, full-stack development, and infrastructure operations.';
@@ -59,13 +58,7 @@
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content={seoTitle} />
 	<meta property="og:description" content={seoDescription} />
-	<meta property="og:image" content="/og-image.jpg" />
-
-	<!-- Twitter -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:title" content={seoTitle} />
-	<meta name="twitter:description" content={seoDescription} />
-	<meta name="twitter:image" content="/og-image.jpg" />
+	<meta property="og:image" content="/images/portrait.png" />
 
 	<!-- Structured Data for SEO -->
 	<script type="application/ld+json">
@@ -77,19 +70,17 @@
 			"jobTitle": "Software Engineer",
 			"worksFor": {
 				"@type": "Organization",
-				"name": "TechInnovate AI"
+				"name": "John Deere"
 			},
 			"description": "Software Engineer specializing in AI solutions, full-stack development, and infrastructure operations.",
-			"sameAs": [
-				"https://github.com/yourusername",
-				"https://linkedin.com/in/yourusername",
-				"https://twitter.com/yourusername"
-			],
+			"sameAs": ["https://github.com/lucasspain13", "https://linkedin.com/in/yourusername"],
 			"knowsAbout": [
 				"LangChain",
 				"LangGraph",
 				"Vector Databases",
 				"RAG Systems",
+				"OpenAI API",
+				"Generative AI",
 				"Full Stack Development",
 				"Cloud Infrastructure"
 			]

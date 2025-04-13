@@ -19,23 +19,14 @@
 
 	onMount(() => {
 		visible = true;
+		console.log('Header mounted: layout debug active');
 	});
 </script>
 
 {#if visible}
 	<div class="sticky top-0 z-50 backdrop-blur-sm shadow-sm">
 		<div class="navbar bg-base-100 bg-opacity-80 pt-4" transition:fly={{ y: -200, duration: 2000 }}>
-			<div class="flex-1">
-				<a
-					class="font-poppins text-xl p-2 max-w-56 hover:scale-105 transition-transform duration-300"
-					href="/"
-				>
-					<picture>
-						<img src={logo} alt="Logo" class="h-10" />
-					</picture>
-				</a>
-			</div>
-			<div class="flex-none gap-3">
+			<div class="navbar-start">
 				<!-- Navigation Links for Desktop -->
 				<div class="hidden md:flex items-center gap-1">
 					{#each links as link, i}
@@ -48,25 +39,23 @@
 						</a>
 					{/each}
 				</div>
-
-				<div class="divider divider-horizontal hidden md:flex"></div>
-
-				<!-- Theme Toggle -->
-				<div in:fade={{ delay: 500, duration: 300 }}>
-					<ThemeToggle />
+			</div>
+			<div class="navbar-end flex items-center pr-8">
+				<div class="flex ml-auto gap-x-4 items-center">
+					<div class="divider divider-horizontal hidden md:flex ml-2"></div>
+					<div in:fade={{ delay: 500, duration: 300 }}>
+						<ThemeToggle />
+					</div>
+					<a
+						href="#contact"
+						tabindex="0"
+						role="button"
+						class="btn btn-primary hover:scale-105 transition-transform duration-300"
+						in:fade={{ delay: 600, duration: 300 }}
+					>
+						<p class="text-sm font-medium p-1">Contact Me</p>
+					</a>
 				</div>
-
-				<div class="divider divider-horizontal"></div>
-
-				<a
-					href="#contact"
-					tabindex="0"
-					role="button"
-					class="btn btn-primary hover:scale-105 transition-transform duration-300"
-					in:fade={{ delay: 600, duration: 300 }}
-				>
-					<p class="text-sm font-medium p-1">Contact Me</p>
-				</a>
 				<!-- Mobile Menu -->
 				<div
 					class="dropdown dropdown-end md:hidden"

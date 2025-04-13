@@ -6,57 +6,81 @@
 	// Work experience data
 	const experiences = [
 		{
-			title: 'AI Solutions Engineer',
-			company: 'TechInnovate AI',
-			period: '2023 - Present',
-			location: 'San Francisco, CA',
+			title: 'Software Engineer, AI Solutions Team',
+			company: 'John Deere',
+			period: 'February 2025 – Present',
+			location: 'Moline, IL',
 			description:
-				'Leading the development of AI-powered applications using LangChain, LangGraph, and vector databases. Building multi-agent systems and RAG implementations for enterprise clients.',
+				'Developed AI applications integrating AI agents for coding tasks, built complex data processing graphs, and deployed AI models. Focused on creating scalable and efficient solutions using various AI/ML frameworks and cloud services.',
 			achievements: [
-				'Architected and implemented a multi-agent system that reduced document processing time by 75%',
-				'Developed a RAG-based knowledge assistant that improved customer support response accuracy by 40%',
-				'Led a team of 5 engineers in building AI-powered solutions for Fortune 500 clients',
-				'Presented AI solutions at industry conferences and published technical articles on AI implementation'
+				'Developed applications integrating AI agents to assist in coding tasks.',
+				'Built complex graphs using LangGraph for data processing and analysis.',
+				'Integrated OpenAI APIs for enhanced application functionalities.',
+				'Implemented RAG techniques for improved data retrieval and response generation.',
+				'Utilized embeddings and OpenSearch for efficient document retrieval systems.',
+				'Worked with specialized models, including Whisper for speech recognition.',
+				'Designed and developed frontend interfaces, managing data streams from React applications.',
+				'Utilized PostgreSQL for checkpoint functionalities.',
+				'Managed AWS services for secrets management, Lambda functions, and logging.'
 			],
 			technologies: [
 				'LangChain',
 				'LangGraph',
-				'OpenAI',
-				'Vector Databases',
-				'Python',
-				'TypeScript',
-				'React'
+				'LangServe',
+				'OpenAI API',
+				'RAG',
+				'Embeddings',
+				'OpenSearch',
+				'Whisper',
+				'React',
+				'PostgreSQL',
+				'Docker',
+				'Docker Compose',
+				'AWS Lambda',
+				'AWS Secrets Manager'
 			]
 		},
 		{
-			title: 'Senior Full Stack Developer',
-			company: 'WebSphere Solutions',
-			period: '2021 - 2023',
-			location: 'Austin, TX',
+			title: 'ITDP', // Combined roles from resumes
+			company: 'John Deere',
+			period: 'June 2022 – February 2025', // Deduced end date from start of next role
+			location: 'Moline, IL',
 			description:
-				'Designed and developed scalable web applications for enterprise clients. Led development teams and mentored junior developers.',
+				'Developed full-stack applications, managed cloud infrastructure, and ensured site reliability. Focused on delivering value through secure coding practices, CI/CD pipeline development, and infrastructure optimization.',
 			achievements: [
-				'Spearheaded the migration of a legacy system to a modern microservices architecture',
-				'Implemented CI/CD pipelines that reduced deployment time by 60%',
-				'Optimized database queries resulting in a 45% improvement in application performance',
-				'Developed and maintained RESTful APIs serving over 1 million requests daily'
+				'Ensured application uptime by implementing quality checks and optimizing infrastructure (SRE).',
+				'Designed Continuous Integration/Continuous Deployment pipelines using GitHub Actions and AWS.',
+				'Achieved zero exploitable application vulnerabilities through secure coding practices.',
+				'Delivered value by designing and implementing frontend and backend features.',
+				'Maintained AWS-hosted cloud infrastructure, ensuring scalability and reliability while managing costs.'
 			],
-			technologies: ['React', 'Node.js', 'TypeScript', 'MongoDB', 'PostgreSQL', 'Docker', 'AWS']
+			technologies: [
+				'React',
+				'Spring (Java)', // Mentioned in Resume 2 for ITDP
+				'JavaScript',
+				'TypeScript',
+				'Python',
+				'AWS',
+				'GitHub Actions',
+				'Docker',
+				'Terraform',
+				'IAM',
+				'Playwright',
+				'SQL' // Implied by SRE/Backend work
+			]
 		},
 		{
-			title: 'DevOps Engineer',
-			company: 'CloudScale Systems',
-			period: '2020 - 2021',
-			location: 'Seattle, WA',
+			title: 'Graduate Teaching Assistant',
+			company: 'University of Iowa Department of Computer Science',
+			period: 'August 2021 – May 2022',
+			location: 'Iowa City, IA',
 			description:
-				'Managed cloud infrastructure and deployment pipelines. Implemented monitoring and alerting systems for production environments.',
+				'Supported undergraduate students in learning programming and logical concepts through leading lab sections and providing feedback on assignments.',
 			achievements: [
-				'Automated infrastructure provisioning reducing setup time from days to hours',
-				'Implemented monitoring solutions that improved system uptime by 15%',
-				'Designed disaster recovery procedures that reduced recovery time by 70%',
-				'Collaborated with development teams to optimize application performance in cloud environments'
+				'Assisted students in understanding programming and logical concepts by leading lab sections.',
+				'Provided feedback by reviewing assignments and projects to facilitate student growth.'
 			],
-			technologies: ['AWS', 'Kubernetes', 'Docker', 'Terraform', 'Jenkins', 'Prometheus', 'Grafana']
+			technologies: ['Python'] // No specific technologies mentioned for this role
 		}
 	];
 
@@ -83,14 +107,9 @@
 	];
 
 	let visible = false;
-	let activeExperience = experiences[0];
 
 	// Define experience type
 	type Experience = (typeof experiences)[0];
-
-	function setActiveExperience(experience: Experience) {
-		activeExperience = experience;
-	}
 
 	onMount(() => {
 		visible = true;
@@ -105,140 +124,60 @@
 			<p class="section-subtitle">My professional journey and career achievements</p>
 		</div>
 
-		<!-- Experience timeline -->
-		<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
-			<!-- Left column: Timeline -->
-			<div class="timeline-container">
-				<div class="bg-base-100 rounded-lg shadow-md p-6" use:animateOnScroll>
-					<h3 class="text-xl font-bold mb-6">Career Timeline</h3>
+		<!-- Redesigned Vertical Experience Timeline -->
+		<div class="max-w-3xl mx-auto">
+			<div class="relative border-l-2 border-primary/30 ml-4 space-y-12 py-4">
+				{#each experiences as experience, i}
+					<div class="timeline-entry relative pl-10" use:animateOnScroll>
+						<!-- Timeline Dot -->
+						<div
+							class="absolute -left-[calc(0.5rem+1px)] top-1 w-4 h-4 bg-primary rounded-full border-2 border-base-200 ring-4 ring-primary/10"
+						></div>
 
-					<div class="timeline relative pl-8 border-l-2 border-primary">
-						{#each experiences as experience, i}
+						<!-- Content Card -->
+						<div class="bg-base-100 rounded-lg shadow-md p-6 transition-shadow hover:shadow-lg">
+							<!-- Header -->
 							<div
-								class="timeline-item relative mb-12 cursor-pointer"
-								class:active={activeExperience === experience}
-								on:click={() => setActiveExperience(experience)}
-								use:animateOnScroll
+								class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3"
 							>
-								<!-- Timeline dot -->
-								<div
-									class="absolute -left-[25px] w-12 h-12 rounded-full bg-base-100 border-4 border-primary flex items-center justify-center transition-all duration-300 {activeExperience ===
-									experience
-										? 'scale-110'
-										: ''}"
-								>
-									<span class="text-sm font-bold">{experience.period.split(' - ')[0]}</span>
-								</div>
-
-								<!-- Content -->
-								<div
-									class="ml-4 transition-all duration-300 {activeExperience === experience
-										? 'opacity-100'
-										: 'opacity-70'}"
-								>
-									<h4 class="text-lg font-bold">{experience.title}</h4>
-									<p class="text-sm">{experience.company}</p>
-									<p class="text-xs opacity-70">{experience.period}</p>
-								</div>
-							</div>
-						{/each}
-					</div>
-				</div>
-			</div>
-
-			<!-- Right column: Experience details -->
-			<div class="experience-details col-span-2">
-				{#if visible}
-					<div class="bg-base-100 rounded-lg shadow-md p-8" in:fade={{ duration: 300 }}>
-						<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
-							<div>
-								<h3 class="text-2xl font-bold">{activeExperience.title}</h3>
-								<p class="text-lg">{activeExperience.company}</p>
-							</div>
-							<div class="mt-2 md:mt-0">
-								<div class="badge badge-primary">{activeExperience.period}</div>
-								<div class="badge badge-outline ml-2">{activeExperience.location}</div>
-							</div>
-						</div>
-
-						<p class="mb-8">{activeExperience.description}</p>
-
-						<!-- Key achievements -->
-						<div class="mb-8">
-							<h4 class="text-lg font-semibold mb-4">Key Achievements</h4>
-							<ul class="space-y-2">
-								{#each activeExperience.achievements as achievement}
-									<li class="flex items-start">
-										<span class="text-primary mr-2 mt-1">
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												class="h-5 w-5"
-												fill="none"
-												viewBox="0 0 24 24"
-												stroke="currentColor"
-											>
-												<path
-													stroke-linecap="round"
-													stroke-linejoin="round"
-													stroke-width="2"
-													d="M5 13l4 4L19 7"
-												/>
-											</svg>
-										</span>
-										<span>{achievement}</span>
-									</li>
-								{/each}
-							</ul>
-						</div>
-
-						<!-- Technologies used -->
-						<div>
-							<h4 class="text-lg font-semibold mb-4">Technologies Used</h4>
-							<div class="flex flex-wrap gap-2">
-								{#each activeExperience.technologies as tech}
-									<div class="badge badge-secondary">{tech}</div>
-								{/each}
-							</div>
-						</div>
-					</div>
-				{/if}
-			</div>
-		</div>
-
-		<!-- Testimonials -->
-		<div class="mt-20">
-			<h3 class="text-2xl font-bold text-center mb-10">What People Say</h3>
-
-			<div
-				class="grid grid-cols-1 md:grid-cols-3 gap-8"
-				use:staggerChildren={{ selector: '.testimonial-card', staggerTime: 200 }}
-			>
-				{#each testimonials as testimonial, i}
-					<div class="testimonial-card card bg-base-100 shadow-xl">
-						<div class="card-body">
-							<div class="flex items-center mb-4">
-								<div class="avatar mr-4">
-									<div class="w-12 h-12 rounded-full">
-										<img src={testimonial.avatar} alt={testimonial.author} />
-									</div>
-								</div>
 								<div>
-									<h4 class="font-bold">{testimonial.author}</h4>
-									<p class="text-xs opacity-70">{testimonial.position}</p>
+									<h3 class="text-xl font-bold text-primary">{experience.title}</h3>
+									<p class="text-md text-base-content/90">{experience.company}</p>
+								</div>
+								<div class="mt-2 sm:mt-0 text-sm sm:text-right space-x-2 flex-shrink-0">
+									<span class="badge badge-secondary">{experience.period}</span>
+									<span class="badge badge-outline">{experience.location}</span>
 								</div>
 							</div>
 
-							<div class="relative">
-								<svg
-									class="absolute -top-4 -left-4 w-8 h-8 text-primary opacity-20"
-									fill="currentColor"
-									viewBox="0 0 32 32"
-								>
-									<path
-										d="M10 8c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6zm12-14c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z"
-									></path>
-								</svg>
-								<p class="italic">{testimonial.text}</p>
+							<!-- Description as bullet points -->
+							<div class="mb-5 text-base-content/80">
+								<h4 class="text-md font-semibold mb-2">Key Responsibilities</h4>
+								<ul class="list-disc list-inside space-y-1 text-sm">
+									{#each experience.description.split('. ').filter((s) => s) as sentence}
+										<li>{sentence.trim()}</li>
+									{/each}
+								</ul>
+							</div>
+
+							<!-- Key achievements -->
+							<div class="mb-5">
+								<h4 class="text-md font-semibold mb-2">Key Achievements</h4>
+								<ul class="list-disc list-inside space-y-1 text-sm text-base-content/80">
+									{#each experience.achievements as achievement}
+										<li>{achievement}</li>
+									{/each}
+								</ul>
+							</div>
+
+							<!-- Technologies used -->
+							<div>
+								<h4 class="text-md font-semibold mb-2">Technologies Used</h4>
+								<div class="flex flex-wrap gap-2">
+									{#each experience.technologies as tech}
+										<div class="badge badge-accent badge-outline text-xs">{tech}</div>
+									{/each}
+								</div>
 							</div>
 						</div>
 					</div>
@@ -246,8 +185,8 @@
 			</div>
 		</div>
 
-		<!-- Resume download -->
-		<div class="text-center mt-16" use:animateOnScroll>
+		<!-- TODO: Restore resume download when ready -->
+		<!-- <div class="text-center mt-16" use:animateOnScroll>
 			<a href="/resume.pdf" class="btn btn-primary btn-lg">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -265,34 +204,32 @@
 				</svg>
 				Download Full Resume
 			</a>
+		</div> -->
+		<div class="text-center mt-16" use:animateOnScroll>
+			<div class="alert alert-warning max-w-md mx-auto">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="stroke-current shrink-0 h-6 w-6"
+					fill="none"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+					/>
+				</svg>
+				<span
+					>My resume is under construction right now. Don't hesitate to reach out to me directly
+					with any questions!</span
+				>
+			</div>
 		</div>
 	</div>
 </section>
 
 <style>
-	.timeline-item {
-		transition: all 0.3s ease;
-	}
-
-	.timeline-item:hover {
-		transform: translateX(5px);
-	}
-
-	.timeline-item.active {
-		transform: translateX(5px);
-	}
-
-	.timeline::after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: -8px;
-		width: 16px;
-		height: 16px;
-		border-radius: 50%;
-		background-color: var(--p);
-	}
-
 	.testimonial-card {
 		transition: all 0.3s ease;
 	}

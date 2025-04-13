@@ -3,33 +3,27 @@
 	import { onMount } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
 	// Profile image
-	import portrait from '$lib/images/portrait.png';
+	import portrait from '$lib/images/portrait-2.jpeg';
 
 	// Career journey milestones
 	const careerJourney = [
 		{
-			year: '2020',
-			title: 'Operations Specialist',
+			year: '2021-2022',
+			title: 'Graduate Teaching Assistant',
 			description:
-				'Started career in IT operations, managing infrastructure and deployment pipelines.'
+				'Supported students at University of Iowa in understanding programming and logical concepts.'
 		},
 		{
-			year: '2021',
-			title: 'Full Stack Developer',
+			year: '2022-2025',
+			title: 'ITDP',
 			description:
-				'Transitioned to full stack development, building web applications with modern frameworks.'
+				'Joined John Deere, developing full stack applications using React and Spring, hosted on AWS. Focused on site reliability engineering, CI/CD pipeline development, and cloud infrastructure management.'
 		},
 		{
-			year: '2022',
-			title: 'Senior Developer',
+			year: '2025-Present',
+			title: 'Software Engineer, AI Solutions Team',
 			description:
-				'Led development teams and architected scalable solutions for enterprise clients.'
-		},
-		{
-			year: '2023',
-			title: 'AI Solutions Engineer',
-			description:
-				'Specialized in AI-powered applications using LangChain, LangGraph, and vector databases.'
+				'Developing AI applications utilizing LangGraph, LangChain, and OpenAI APIs with RAG techniques.'
 		}
 	];
 
@@ -48,29 +42,34 @@
 			<p class="section-subtitle">My journey from operations to AI solutions</p>
 		</div>
 
-		<!-- About content -->
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-			<!-- Left column: Image and quick facts -->
-			<div class="about-image-container" use:animateOnScroll>
-				<div class="relative mx-auto max-w-md">
-					<img
-						src={portrait}
-						alt="Professional portrait"
-						class="rounded-lg shadow-xl w-full object-cover"
-					/>
+		<!-- Centered single-column layout -->
+		<div class="max-w-4xl mx-auto">
+			<!-- About content -->
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
+				<!-- Left column: Image and quick facts -->
+				<div class="about-image-container md:sticky md:top-24" use:animateOnScroll>
+					<div class="relative mx-auto max-w-md">
+						<img
+							src={portrait}
+							alt="Professional portrait"
+							class="rounded-lg shadow-xl w-full object-cover aspect-[4/5]"
+						/>
 
-					<!-- Decorative elements -->
-					<div class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-primary opacity-10"></div>
-					<div
-						class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-secondary opacity-10"
-					></div>
+						<!-- Decorative elements (Optional, adjust if needed) -->
+						<div
+							class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-secondary opacity-50 -z-10"
+						></div>
+						<div
+							class="absolute -bottom-4 -left-4 w-16 h-16 rounded-full bg-secondary opacity-50 -z-10"
+						></div>
+					</div>
 
-					<!-- Quick facts -->
-					<div class="bg-base-200 rounded-lg p-6 shadow-lg mt-8">
+					<!-- Quick facts below image -->
+					<div class="bg-base-200 rounded-lg p-6 shadow-lg mt-8 max-w-md mx-auto">
 						<h3 class="text-xl font-bold mb-4">Quick Facts</h3>
-						<ul class="space-y-2">
+						<ul class="space-y-2 text-sm">
 							<li class="flex items-center">
-								<span class="text-primary mr-2">
+								<span class="text-primary mr-2 flex-shrink-0">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										class="h-5 w-5"
@@ -92,10 +91,10 @@
 										/>
 									</svg>
 								</span>
-								<span>Based in San Francisco, CA</span>
+								<span>Based in Davenport, IA</span>
 							</li>
 							<li class="flex items-center">
-								<span class="text-primary mr-2">
+								<span class="text-primary mr-2 flex-shrink-0">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										class="h-5 w-5"
@@ -114,7 +113,7 @@
 								<span>3+ Years Professional Experience</span>
 							</li>
 							<li class="flex items-center">
-								<span class="text-primary mr-2">
+								<span class="text-primary mr-2 flex-shrink-0">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										class="h-5 w-5"
@@ -130,10 +129,10 @@
 										/>
 									</svg>
 								</span>
-								<span>Masters in Software Engineering</span>
+								<span>Master of Computer Science</span>
 							</li>
 							<li class="flex items-center">
-								<span class="text-primary mr-2">
+								<span class="text-primary mr-2 flex-shrink-0">
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										class="h-5 w-5"
@@ -149,83 +148,75 @@
 										/>
 									</svg>
 								</span>
-								<span>Fluent in 5+ Programming Languages</span>
+								<span>Code Pair & Behavioral Interviewer</span>
 							</li>
 						</ul>
 					</div>
 				</div>
-			</div>
 
-			<!-- Right column: Bio and career journey -->
-			<div class="about-content">
-				{#if visible}
-					<div in:fly={{ y: 20, duration: 800 }}>
-						<h3 class="text-2xl font-bold mb-4">My Story</h3>
-						<div class="space-y-4 mb-8">
-							<p>
-								I'm a software engineer with a unique journey from operations to full-stack
-								development to AI solutions. My diverse background gives me a holistic perspective
-								on building robust, scalable applications.
-							</p>
-							<p>
-								Starting in operations, I gained valuable insights into infrastructure, deployment,
-								and system reliability. This foundation helped me transition into full-stack
-								development, where I built web and mobile applications using modern frameworks and
-								technologies.
-							</p>
-							<p>
-								Today, I specialize in building AI-powered applications using <span
-									class="text-accent-blue font-semibold">LangChain</span
-								>,
-								<span class="text-accent-blue font-semibold">LangGraph</span>, and other
-								cutting-edge AI technologies. I'm passionate about creating intelligent systems that
-								solve real-world problems.
-							</p>
-						</div>
+				<!-- Right column: Bio and career journey -->
+				<div class="about-content">
+					{#if visible}
+						<div in:fly={{ y: 20, duration: 800 }}>
+							<h3 class="text-2xl font-bold mb-4">My Story</h3>
+							<div class="space-y-4 mb-12 text-base-content/80">
+								<p>
+									I'm a software engineer with a journey from full-stack development to AI
+									solutions. My diverse background gives me a holistic perspective on building
+									robust, scalable applications.
+								</p>
+								<p>
+									Starting at John Deere in their Information Technology Development Program (ITDP),
+									I gained valuable insights into infrastructure, deployment, and system
+									reliability. This foundation helped me excel in site reliability engineering and
+									cloud infrastructure management.
+								</p>
+								<p>
+									Today, I specialize in building AI-powered applications using
+									<span class="font-semibold text-accent">LangChain</span>,
+									<span class="font-semibold text-accent">LangGraph</span>, and other cutting-edge
+									AI technologies. I'm passionate about creating intelligent systems that solve
+									real-world problems.
+								</p>
+							</div>
 
-						<!-- Career journey -->
-						<h3 class="text-2xl font-bold mb-4">Career Journey</h3>
-						<div class="career-timeline relative pl-8 border-l-2 border-primary">
-							{#each careerJourney as milestone, i}
-								<div
-									class="milestone relative mb-8"
-									in:fly={{ y: 20, duration: 500, delay: 300 + i * 200 }}
-								>
-									<!-- Timeline dot -->
+							<!-- Career journey -->
+							<h3 class="text-2xl font-bold mb-8">Career Journey</h3>
+							<div class="relative border-l-2 border-primary/30 ml-4 space-y-12 py-4">
+								{#each careerJourney as milestone, i}
 									<div
-										class="absolute -left-[25px] w-12 h-12 rounded-full bg-base-100 border-4 border-primary flex items-center justify-center"
+										class="milestone relative pl-10"
+										in:fly={{ y: 20, duration: 500, delay: 300 + i * 200 }}
 									>
-										<span class="text-sm font-bold">{milestone.year}</span>
-									</div>
+										<!-- Timeline Dot -->
+										<div
+											class="absolute -left-[calc(0.5rem+1px)] top-1 w-4 h-4 bg-primary rounded-full border-2 border-base-100 ring-4 ring-primary/10"
+										></div>
 
-									<!-- Content -->
-									<div class="ml-4">
-										<h4 class="text-xl font-bold">{milestone.title}</h4>
-										<p class="mt-2 opacity-80">{milestone.description}</p>
+										<!-- Content -->
+										<div class="ml-4">
+											<span class="badge badge-outline badge-primary mb-1">{milestone.year}</span>
+											<h4 class="text-lg font-semibold text-primary">{milestone.title}</h4>
+											<p class="mt-1 text-sm text-base-content/80">{milestone.description}</p>
+										</div>
 									</div>
-								</div>
-							{/each}
+								{/each}
+							</div>
 						</div>
-					</div>
-				{/if}
+					{/if}
+				</div>
 			</div>
 		</div>
 	</div>
 </section>
 
 <style>
-	.career-timeline::after {
-		content: '';
-		position: absolute;
-		bottom: 0;
-		left: -8px;
-		width: 16px;
-		height: 16px;
-		border-radius: 50%;
-		background-color: var(--p);
-	}
+	/* Removed old career-timeline styles */
+	/* Removed .milestone::after, .milestone-content */
 
-	.milestone {
-		position: relative;
-	}
+	/* Keep hover effect if desired, or remove */
+	/*.milestone-content:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+	}*/
 </style>

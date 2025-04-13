@@ -4,10 +4,9 @@
 		'Software Engineer specializing in web development, application development, machine learning operations, and infrastructure operations.';
 	export let keywords =
 		'software engineer, web development, full stack, AI, machine learning, operations, portfolio';
-	export let author = 'Your Name';
-	export let ogImage = '/og-image.jpg';
-	export let ogUrl = 'https://yourportfolio.com';
-	export let twitterHandle = '@yourhandle';
+	export let author = 'Lucas Spain';
+	export let ogImage = '/images/portrait.png';
+	export let ogUrl = 'https://lucas-spain.com';
 </script>
 
 <svelte:head>
@@ -24,14 +23,6 @@
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content={ogImage} />
 
-	<!-- Twitter -->
-	<meta property="twitter:card" content="summary_large_image" />
-	<meta property="twitter:url" content={ogUrl} />
-	<meta property="twitter:title" content={title} />
-	<meta property="twitter:description" content={description} />
-	<meta property="twitter:image" content={ogImage} />
-	<meta property="twitter:creator" content={twitterHandle} />
-
 	<!-- Canonical URL -->
-	<link rel="canonical" href={ogUrl} />
+	<link rel="canonical" href="https://lucas-spain.com" />
 </svelte:head>

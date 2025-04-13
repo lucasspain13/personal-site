@@ -32,10 +32,10 @@
 
 <SEO />
 
-<div class="app min-h-screen flex flex-col bg-base-100 text-base-content">
+<div class="app min-h-screen flex flex-col bg-base-100 text-base-content w-full overflow-x-hidden">
 	<Header />
 
-	<main class="flex-1 w-full mx-auto">
+	<main class="flex-1 w-full">
 		<slot />
 	</main>
 
@@ -57,8 +57,7 @@
 	:global(.page-section) {
 		padding-top: 4rem;
 		padding-bottom: 4rem;
-		padding-left: 1rem;
-		padding-right: 1rem;
+		/* Removed horizontal padding for edge-to-edge mobile */
 	}
 
 	@media (min-width: 768px) {
@@ -87,6 +86,7 @@
 		max-width: 80rem;
 		margin-left: auto;
 		margin-right: auto;
+		box-sizing: border-box;
 	}
 
 	:global(.card-hover) {
