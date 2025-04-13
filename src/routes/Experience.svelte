@@ -116,6 +116,19 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Experience | Lucas Spain - Software Engineer, AI, Web Development, Iowa</title>
+	<meta
+		name="description"
+		content="Review the professional experience of Lucas Spain, including roles in AI, web development, agents, and software engineering at John Deere and University of Iowa. Based in Iowa, Quad Cities, Maquoketa, and Moline."
+	/>
+	<meta
+		name="keywords"
+		content="Experience, Lucas Spain, software engineer, AI, web development, agents, Maquoketa, Iowa, Quad Cities, Moline, East Moline, Davenport, University of Iowa, computer science, John Deere, LangChain, LangGraph, prompt engineering"
+	/>
+	<meta name="robots" content="index, follow" />
+</svelte:head>
+
 <section id="experience" class="page-section bg-base-200 py-20">
 	<div class="container mx-auto px-4">
 		<!-- Section header -->

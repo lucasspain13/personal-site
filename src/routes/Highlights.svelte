@@ -92,6 +92,19 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Highlights | Lucas Spain - AI, Web Development, Agents, Computer Science, Iowa</title>
+	<meta
+		name="description"
+		content="See the highlights and key achievements of Lucas Spain, including AI, web development, agents, and computer science. Based in Iowa, Quad Cities, Maquoketa, and Moline. Specialized in LangChain, LangGraph, and cloud infrastructure."
+	/>
+	<meta
+		name="keywords"
+		content="Highlights, Lucas Spain, AI, web development, agents, computer science, LangChain, LangGraph, Maquoketa, Iowa, Quad Cities, Moline, East Moline, Davenport, University of Iowa, John Deere, cloud infrastructure, achievements"
+	/>
+	<meta name="robots" content="index, follow" />
+</svelte:head>
+
 <section id="highlights" class="page-section bg-base-200 py-16">
 	<div class="container mx-auto px-4">
 		<!-- Section header -->

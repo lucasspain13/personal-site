@@ -34,6 +34,19 @@
 	});
 </script>
 
+<svelte:head>
+	<title>About | Lucas Spain - Software Engineer, AI, Web Development, Iowa</title>
+	<meta
+		name="description"
+		content="Learn about Lucas Spain's journey from Maquoketa to Davenport, Iowa City, and the Quad Cities. Software engineer and AI specialist with experience in web development, agents, LangChain, prompt engineering, and computer science. Alumni of University of Iowa."
+	/>
+	<meta
+		name="keywords"
+		content="About, Lucas Spain, software engineer, AI, web development, agents, Maquoketa, Iowa, Iowa City, UIowa, University of Iowa, Quad Cities, Davenport, Moline, East Moline, computer science, John Deere, LangChain, LangGraph, prompt engineering"
+	/>
+	<meta name="robots" content="index, follow" />
+</svelte:head>
+
 <section id="about" class="page-section bg-base-100 py-20">
 	<div class="container mx-auto px-4">
 		<!-- Section header -->

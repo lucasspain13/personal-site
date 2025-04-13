@@ -224,6 +224,19 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Projects | Lucas Spain - AI, Web Development, Agents, Iowa, Quad Cities</title>
+	<meta
+		name="description"
+		content="Explore projects by Lucas Spain, including AI, web development, agentic coding, and software engineering. Featuring work with LangChain, LangGraph, FastAPI, and more. Based in Iowa, Quad Cities, Maquoketa, and Moline."
+	/>
+	<meta
+		name="keywords"
+		content="Projects, Lucas Spain, AI, web development, agents, LangChain, LangGraph, FastAPI, SvelteKit, TypeScript, Python, Maquoketa, Iowa, Quad Cities, Moline, East Moline, Davenport, University of Iowa, computer science, portfolio, John Deere"
+	/>
+	<meta name="robots" content="index, follow" />
+</svelte:head>
+
 <section id="projects" class="page-section bg-base-100 py-20 w-full">
 	<div class="container mx-auto px-4">
 		<!-- Section header -->

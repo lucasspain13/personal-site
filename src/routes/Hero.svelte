@@ -236,7 +236,7 @@
 				<img
 					src={portrait}
 					class="max-w-full h-auto drop-shadow-2xl relative z-10"
-					alt="Portrait"
+					alt="Portrait of a software engineer and AI specialist from Iowa"
 					style="max-height: 70vh;"
 				/>
 

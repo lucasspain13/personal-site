@@ -87,6 +87,19 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Skills | Lucas Spain - AI, Web Development, Agents, Computer Science, Iowa</title>
+	<meta
+		name="description"
+		content="Discover the technical skills and expertise of Lucas Spain, including AI, web development, agents, computer science, and cloud infrastructure. Experience with LangChain, LangGraph, FastAPI, Python, and more. Based in Iowa, Quad Cities, Maquoketa, and Moline."
+	/>
+	<meta
+		name="keywords"
+		content="Skills, Lucas Spain, AI, web development, agents, computer science, LangChain, LangGraph, FastAPI, Python, SvelteKit, TypeScript, Maquoketa, Iowa, Quad Cities, Moline, East Moline, Davenport, University of Iowa, John Deere, cloud infrastructure"
+	/>
+	<meta name="robots" content="index, follow" />
+</svelte:head>
+
 <section id="skills" class="page-section bg-base-200 py-20">
 	<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 		<!-- Removed px-4 for mobile edge-to-edge -->
