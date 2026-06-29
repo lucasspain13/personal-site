@@ -27,13 +27,25 @@ aws s3 sync build/images/ "s3://${BUCKET}/images/" \
 
 # 3) Publish root files (index.html, favicon, robots, sitemap) and prune
 #    orphaned root files. The new index.html — pointing at the new bundle
-#    hashes — goes live here.
+#    hashes — goes live here. PDFs are handled separately (step 3b) so they
+#    get an explicit Content-Type.
 aws s3 sync build/ "s3://${BUCKET}/" \
   --delete \
   --exclude "_app/*" \
   --exclude "images/*" \
   --exclude ".DS_Store" \
+  --exclude "*.pdf" \
   --cache-control "${NO_CACHE}"
+
+# 3b) Upload PDFs (e.g. the resume) with an EXPLICIT Content-Type. We use
+#     `cp` (not `sync`) so the correct metadata is reasserted every deploy —
+#     `sync` skips objects whose size/mtime match, which can leave a stale
+#     Content-Type that makes the file download as ".pdf.html".
+while IFS= read -r pdf; do
+  aws s3 cp "${pdf}" "s3://${BUCKET}/$(basename "${pdf}")" \
+    --content-type "application/pdf" \
+    --cache-control "${LONG_CACHE}"
+done < <(find build -maxdepth 1 -type f -name "*.pdf")
 
 # 4) Prune stale hashed bundles now that no HTML references them.
 aws s3 sync build/_app/ "s3://${BUCKET}/_app/" \

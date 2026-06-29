@@ -170,6 +170,9 @@
 				>
 					<a href="#projects" class="btn btn-primary">View Projects</a>
 					<a href="#contact" class="btn btn-outline">Get in Touch</a>
+					<a href="/Lucas_Spain_Resume.pdf" download="Lucas_Spain_Resume.pdf" class="btn btn-outline">
+						Résumé
+					</a>
 				</div>
 
 				<div class="reveal flex justify-center gap-1 lg:justify-start" style="--d: 400ms">
