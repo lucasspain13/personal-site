@@ -3,9 +3,9 @@
 
 	const experiences = [
 		{
-			title: 'Software Engineer, AI Solutions Team',
+			title: 'Senior Software Engineer, AI Solutions Team',
 			company: 'John Deere',
-			period: 'February 2025 to Present',
+			period: '2025 to Present',
 			location: 'Moline, IL',
 			description:
 				'Building AI applications: coding agents, data-processing graphs, and deployed models across AI/ML frameworks and cloud services.',
@@ -33,9 +33,23 @@
 			]
 		},
 		{
+			title: 'Software Engineer',
+			company: 'John Deere',
+			period: '2024 to 2025',
+			location: 'Moline, IL',
+			description:
+				'Built a full-stack web application with a React frontend and a Spring Boot backend.',
+			achievements: [
+				'Built React frontend features backed by a Spring Boot REST API.',
+				'Delivered full-stack features end to end, from UI to data layer.',
+				'Collaborated on a shared codebase using code review and CI/CD.'
+			],
+			technologies: ['React', 'Spring Boot', 'Java', 'TypeScript', 'JavaScript', 'REST APIs']
+		},
+		{
 			title: 'Information Technology Development Program (ITDP)',
 			company: 'John Deere',
-			period: 'June 2022 to February 2025',
+			period: '2022 to 2024',
 			location: 'Moline, IL',
 			description:
 				'Developed full-stack applications, managed cloud infrastructure, and owned site reliability, delivering features through secure coding, CI/CD, and infrastructure work.',

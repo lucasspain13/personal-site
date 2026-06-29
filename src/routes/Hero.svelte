@@ -159,10 +159,9 @@
 					Software &amp; AI Engineer
 				</h2>
 				<p class="reveal mb-8 max-w-xl text-lg opacity-80" style="--d: 240ms">
-					I build AI-powered applications with a variety of tools and frameworks, including
-					<span class="font-semibold text-accent">LangGraph</span>,
-					<span class="font-semibold text-accent">A2A</span>,
-					<span class="font-semibold text-accent">FastMCP</span>, and custom agentic frameworks.
+					I build <span class="font-semibold text-accent">web applications</span> and
+					<span class="font-semibold text-accent">AI agentic applications</span>, from full-stack
+					products to custom agent frameworks.
 				</p>
 
 				<div

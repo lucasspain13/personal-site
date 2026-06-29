@@ -56,7 +56,7 @@
 			},
 			"address": {
 				"@type": "PostalAddress",
-				"addressLocality": "Davenport",
+				"addressLocality": "Bettendorf",
 				"addressRegion": "IA",
 				"addressCountry": "USA"
 			},

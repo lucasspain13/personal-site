@@ -82,7 +82,7 @@
 										/>
 									</svg>
 								</span>
-								<span>Based in Davenport, IA</span>
+								<span>Based in Bettendorf, IA</span>
 							</li>
 							<li class="flex items-center">
 								<span class="text-primary mr-2 flex-shrink-0">

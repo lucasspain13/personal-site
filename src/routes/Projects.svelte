@@ -11,6 +11,7 @@
 		featured: boolean;
 		type: 'personal-with-repo' | 'personal' | 'work';
 		repoUrl?: string;
+		repoPrivate?: boolean;
 		liveUrl?: string;
 	}
 
@@ -25,6 +26,7 @@
 			featured: true,
 			type: 'personal-with-repo',
 			repoUrl: 'https://github.com/lucasspain13/pride-in-motion',
+			repoPrivate: true,
 			liveUrl: 'https://prideinmotion.com'
 		},
 		{
@@ -35,7 +37,8 @@
 			category: 'AI',
 			featured: true,
 			type: 'personal-with-repo',
-			repoUrl: 'https://github.com/lucasspain13/gatsby'
+			repoUrl: 'https://github.com/lucasspain13/gatsby',
+			repoPrivate: true
 		},
 		{
 			title: 'Personal Website',
@@ -55,7 +58,8 @@
 			category: 'Web Development',
 			featured: true,
 			type: 'personal-with-repo',
-			repoUrl: 'https://github.com/lucasspain13/dealer-assistant'
+			repoUrl: 'https://github.com/lucasspain13/dealer-assistant',
+			repoPrivate: true
 		},
 		{
 			title: 'Scarf Pattern Generator',
@@ -84,9 +88,19 @@
 			category: 'Web Development',
 			featured: false,
 			type: 'personal-with-repo',
-			repoUrl: 'https://github.com/lucasspain13/plex-uploader'
+			repoUrl: 'https://github.com/lucasspain13/plex-uploader',
+			repoPrivate: true
 		},
 		// Work projects
+		{
+			title: 'Joe, the AI Avatar',
+			description:
+				'An AI avatar kiosk that pairs a HeyGen avatar with a live salesperson over WebRTC and A2A for a resilient customer experience. Added MCP app integration for rich UIs in AI chat, built the chat voice and audio pipeline, and modernized the enterprise site to React 18 with React Testing Library.',
+			tags: ['HeyGen', 'WebRTC', 'A2A', 'MCP', 'React 18', 'RTL'],
+			category: 'AI',
+			featured: true,
+			type: 'work'
+		},
 		{
 			title: 'CSRF Protection',
 			description:
@@ -230,7 +244,7 @@
 							{/each}
 						</div>
 
-						{#if project.repoUrl || project.liveUrl}
+						{#if project.liveUrl || (project.repoUrl && !project.repoPrivate)}
 							<div class="mt-4 flex flex-wrap gap-2">
 								{#if project.liveUrl}
 									<a
@@ -257,7 +271,7 @@
 										Visit Site
 									</a>
 								{/if}
-								{#if project.repoUrl}
+								{#if project.repoUrl && !project.repoPrivate}
 									<a
 										href={project.repoUrl}
 										target="_blank"
