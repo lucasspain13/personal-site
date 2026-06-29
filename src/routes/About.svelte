@@ -11,14 +11,20 @@
 				'Supported students at University of Iowa in understanding programming and logical concepts.'
 		},
 		{
-			year: '2022-2025',
+			year: '2022-2024',
 			title: 'ITDP',
 			description:
 				'Joined John Deere, developing full stack applications using React and Spring, hosted on AWS. Focused on site reliability engineering, CI/CD pipeline development, and cloud infrastructure management.'
 		},
 		{
+			year: '2024-2025',
+			title: 'Software Engineer',
+			description:
+				'Built a full-stack web application with a React frontend and a Spring Boot backend.'
+		},
+		{
 			year: '2025-Present',
-			title: 'Software Engineer, AI Solutions Team',
+			title: 'Senior Software Engineer, AI Solutions Team',
 			description: 'Building AI applications with LangGraph, LangChain, the OpenAI APIs, and RAG.'
 		}
 	];

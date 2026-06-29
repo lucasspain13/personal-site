@@ -102,6 +102,24 @@
 			type: 'work'
 		},
 		{
+			title: 'Dealer Assistant',
+			description:
+				'An AI chatbot that helps John Deere dealers find answers fast, using retrieval over dealer-facing content to ground its responses.',
+			tags: ['AI Chatbot', 'RAG', 'LLM'],
+			category: 'AI',
+			featured: true,
+			type: 'work'
+		},
+		{
+			title: 'MCP App Integration',
+			description:
+				'Integrated Model Context Protocol (MCP) apps into AI chat so tools can render rich, interactive UIs inline instead of plain text responses.',
+			tags: ['MCP', 'AI Chat', 'Rich UIs'],
+			category: 'AI',
+			featured: true,
+			type: 'work'
+		},
+		{
 			title: 'CSRF Protection',
 			description:
 				'Designed and rolled out an application-wide change to close an identified security flaw in a production system.',
@@ -120,9 +138,9 @@
 			type: 'work'
 		},
 		{
-			title: 'GitHub Bot',
+			title: 'Francois, the GitHub Bot',
 			description:
-				'Built a GitHub bot to automate issue triage and pull-request reviews, wired into GitHub Actions and hosted on AWS Lambda.',
+				'Francois, a GitHub bot that automates issue triage and pull-request reviews, wired into GitHub Actions and hosted on AWS Lambda.',
 			tags: ['GitHub API', 'GitHub Actions', 'Terraform', 'Lambda', 'IAM'],
 			category: 'DevOps',
 			featured: true,
