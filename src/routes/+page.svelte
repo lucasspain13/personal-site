@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
-	// Import all section components
 	import About from './About.svelte';
 	import Contact from './Contact.svelte';
 	import Experience from './Experience.svelte';
@@ -10,44 +7,11 @@
 	import Projects from './Projects.svelte';
 	import Skills from './Skills.svelte';
 
-	const seoTitle =
-		'Lucas Spain | AI, Web Development & Software Engineer in Iowa, Quad Cities, Maquoketa';
+	const seoTitle = 'Lucas Spain | Software & AI Engineer';
 	const seoDescription =
-		'Portfolio of Lucas Spain, a software engineer and AI specialist based in Iowa and the Quad Cities, with expertise in web development, AI, agents, LangChain, prompt engineering, and computer science. Experience in Davenport, Maquoketa, Iowa City, UIowa, University of Iowa, Moline, and East Moline. Open to recruiter inquiries.';
+		'Lucas Spain is a software and AI engineer in the Quad Cities, building AI applications with LangGraph, LangChain, and RAG, plus full-stack and cloud work. Open to new opportunities.';
 	const seoKeywords =
-		'Lucas Spain, software engineer, AI engineer, prompt engineer, Langchain, LangGraph, web development, AI, agents, computer science, Maquoketa, Iowa, Iowa City, UIowa, University of Iowa, Quad Cities, Davenport, Moline, East Moline, recruiter, portfolio, full stack developer, generative AI, RAG, cloud infrastructure, John Deere';
-
-	let visible = false;
-
-	onMount(() => {
-		visible = true;
-
-		// Initialize scroll animations
-		const animateOnScroll = () => {
-			const elements = document.querySelectorAll('.animate-on-scroll');
-
-			elements.forEach((element) => {
-				const elementTop = element.getBoundingClientRect().top;
-				const elementBottom = element.getBoundingClientRect().bottom;
-
-				// Check if element is in viewport
-				if (elementTop < window.innerHeight && elementBottom > 0) {
-					element.classList.add('visible');
-				}
-			});
-		};
-
-		// Run on initial load
-		animateOnScroll();
-
-		// Add scroll event listener
-		window.addEventListener('scroll', animateOnScroll);
-
-		// Clean up event listener
-		return () => {
-			window.removeEventListener('scroll', animateOnScroll);
-		};
-	});
+		'Lucas Spain, software engineer, AI engineer, LangChain, LangGraph, RAG, full stack developer, web development, cloud infrastructure, Iowa, Quad Cities';
 </script>
 
 <svelte:head>
@@ -81,7 +45,7 @@
 			"@type": "Person",
 			"name": "Lucas Spain",
 			"url": "https://www.lucas-spain.com",
-			"jobTitle": "Software Engineer, AI Engineer, Prompt Engineer, Web Developer",
+			"jobTitle": "Software & AI Engineer",
 			"worksFor": {
 				"@type": "Organization",
 				"name": "John Deere"
@@ -90,69 +54,35 @@
 				"@type": "CollegeOrUniversity",
 				"name": "University of Iowa"
 			},
-			"homeLocation": {
-				"@type": "Place",
-				"name": "Maquoketa, Iowa"
-			},
 			"address": {
 				"@type": "PostalAddress",
 				"addressLocality": "Davenport",
 				"addressRegion": "IA",
 				"addressCountry": "USA"
 			},
-			"description": "Software Engineer and AI specialist based in Iowa and the Quad Cities, with expertise in web development, AI, agents, LangChain, prompt engineering, and computer science. Experience in Davenport, Maquoketa, Iowa City, UIowa, University of Iowa, Moline, and East Moline.",
+			"description": "Software and AI engineer based in the Quad Cities, building AI applications with LangGraph, LangChain, and RAG, alongside full-stack and cloud infrastructure work.",
 			"sameAs": [
 				"https://github.com/lucasspain13",
 				"https://linkedin.com/in/lucas-spain-24189715a"
 			],
 			"knowsAbout": [
-				"Web Development",
-				"AI",
-				"Agents",
+				"Software Engineering",
+				"Artificial Intelligence",
 				"LangChain",
 				"LangGraph",
-				"Prompt Engineering",
-				"Computer Science",
-				"Maquoketa",
-				"Iowa",
-				"Iowa City",
-				"UIowa",
-				"University of Iowa",
-				"Quad Cities",
-				"Davenport",
-				"Moline",
-				"East Moline",
+				"Retrieval-Augmented Generation",
 				"Full Stack Development",
-				"RAG",
 				"Cloud Infrastructure",
-				"Generative AI"
+				"DevOps"
 			]
 		}
 	</script>
 </svelte:head>
 
-<!-- Main content -->
-{#if visible}
-	<div in:fade={{ duration: 300 }}>
-		<!-- Hero Section -->
-		<Hero />
-
-		<!-- About Section -->
-		<About />
-
-		<!-- Highlights Section -->
-		<Highlights />
-
-		<!-- Skills Section -->
-		<Skills />
-
-		<!-- Projects Section -->
-		<Projects />
-
-		<!-- Experience Section -->
-		<Experience />
-
-		<!-- Contact Section -->
-		<Contact />
-	</div>
-{/if}
+<Hero />
+<About />
+<Highlights />
+<Skills />
+<Projects />
+<Experience />
+<Contact />

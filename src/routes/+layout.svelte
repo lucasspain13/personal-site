@@ -1,36 +1,9 @@
 <script>
 	import Footer from '$lib/components/Footer.svelte';
 	import ScrollToTop from '$lib/components/ScrollToTop.svelte';
-	import SEO from '$lib/components/SEO.svelte';
-	import { onMount } from 'svelte';
 	import '../app.css';
 	import Header from './Header.svelte';
-
-	// Default SEO values - these can be overridden in individual pages
-	export let data;
-
-	let mounted = false;
-
-	onMount(() => {
-		// Add smooth scrolling behavior to HTML element
-		document.documentElement.style.scrollBehavior = 'smooth';
-
-		// Check for saved theme preference or use system preference
-		const savedTheme = localStorage.getItem('theme');
-
-		if (savedTheme) {
-			document.documentElement.setAttribute('data-theme', savedTheme);
-		} else {
-			// Check system preference
-			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-		}
-
-		mounted = true;
-	});
 </script>
-
-<SEO />
 
 <div class="app min-h-screen flex flex-col bg-base-100 text-base-content w-full">
 	<Header />
@@ -47,6 +20,13 @@
 	/* Add any global styles here */
 	:global(html) {
 		scroll-padding-top: 5rem; /* Ensures anchors account for fixed header */
+		scroll-behavior: smooth;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		:global(html) {
+			scroll-behavior: auto;
+		}
 	}
 
 	:global(::selection) {

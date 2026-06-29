@@ -1,15 +1,6 @@
 <script lang="ts">
-	import { animateOnScroll, staggerChildren } from '$lib/actions/animate';
 	import portrait from '$lib/images/portrait.png';
 	import { onMount } from 'svelte';
-	import { fade, fly, scale, slide } from 'svelte/transition';
-
-	// Typing effect state
-	let typingComplete = false;
-	let showSubtitle = false;
-	let showDescription = false;
-	let showButtons = false;
-	let showSocial = false;
 
 	// Particle animation
 	let canvas: HTMLCanvasElement;
@@ -17,7 +8,6 @@
 	let particles: Particle[] = [];
 	let animationFrame: number;
 
-	// Social media links
 	const socialLinks = [
 		{
 			name: 'GitHub',
@@ -36,311 +26,176 @@
 		}
 	];
 
-	// Particle class for background animation
 	class Particle {
 		x: number;
 		y: number;
 		size: number;
 		speedX: number;
 		speedY: number;
-		color: string;
 
 		constructor(x: number, y: number) {
 			this.x = x;
 			this.y = y;
-			this.size = Math.random() * 3 + 1;
-			this.speedX = Math.random() * 2 - 1;
-			this.speedY = Math.random() * 2 - 1;
-			this.color = `rgba(var(--p), ${Math.random() * 0.3 + 0.1})`;
+			this.size = Math.random() * 2 + 1;
+			this.speedX = Math.random() * 0.6 - 0.3;
+			this.speedY = Math.random() * 0.6 - 0.3;
 		}
 
 		update() {
 			this.x += this.speedX;
 			this.y += this.speedY;
-
-			if (this.size > 0.2) this.size -= 0.01;
+			if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+			if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
 		}
 
 		draw() {
 			if (!ctx) return;
-			ctx.fillStyle = this.color;
+			ctx.fillStyle = 'rgba(0, 180, 216, 0.5)';
 			ctx.beginPath();
 			ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
 			ctx.fill();
 		}
 	}
 
-	// Initialize particle animation
-	function initParticles() {
+	function sizeCanvas() {
 		if (!canvas) return;
-
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
-
-		// Adjust particle count based on screen size
-		let particleCount = 100;
-		if (window.innerWidth < 768) {
-			particleCount = 40;
-		}
-
-		// Create particles
-		for (let i = 0; i < particleCount; i++) {
-			const x = Math.random() * canvas.width;
-			const y = Math.random() * canvas.height;
-			particles.push(new Particle(x, y));
-		}
-
-		// Start animation loop
-		animateParticles();
+		canvas.width = canvas.offsetWidth;
+		canvas.height = canvas.offsetHeight;
 	}
 
-	// Animate particles
-	function animateParticles() {
-		if (!ctx || !canvas) return;
+	function initParticles() {
+		if (!canvas) return;
+		sizeCanvas();
+		particles = [];
+		const count = window.innerWidth < 768 ? 30 : 70;
+		for (let i = 0; i < count; i++) {
+			particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+		}
+		animate();
+	}
 
+	function animate() {
+		if (!ctx || !canvas) return;
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-		// Update and draw particles
 		for (let i = 0; i < particles.length; i++) {
 			particles[i].update();
 			particles[i].draw();
-
-			// Connect particles with lines if they're close enough
-			for (let j = i; j < particles.length; j++) {
+			for (let j = i + 1; j < particles.length; j++) {
 				const dx = particles[i].x - particles[j].x;
 				const dy = particles[i].y - particles[j].y;
 				const distance = Math.sqrt(dx * dx + dy * dy);
-
-				if (distance < 100) {
+				if (distance < 120) {
 					ctx.beginPath();
-					ctx.strokeStyle = `rgba(var(--p), ${0.2 - distance / 500})`;
+					ctx.strokeStyle = `rgba(0, 180, 216, ${0.18 - distance / 700})`;
 					ctx.lineWidth = 0.5;
 					ctx.moveTo(particles[i].x, particles[i].y);
 					ctx.lineTo(particles[j].x, particles[j].y);
 					ctx.stroke();
 				}
 			}
-
-			// Remove particles that are too small or out of bounds
-			if (
-				particles[i].size <= 0.2 ||
-				particles[i].x < 0 ||
-				particles[i].x > canvas.width ||
-				particles[i].y < 0 ||
-				particles[i].y > canvas.height
-			) {
-				particles.splice(i, 1);
-				i--;
-
-				// Add a new particle to replace the removed one
-				const x = Math.random() * canvas.width;
-				const y = Math.random() * canvas.height;
-				particles.push(new Particle(x, y));
-			}
 		}
-
-		animationFrame = requestAnimationFrame(animateParticles);
+		animationFrame = requestAnimationFrame(animate);
 	}
 
-	// Handle window resize
 	function handleResize() {
-		if (!canvas) return;
-
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
-	}
-
-	// Sequence the animations
-	function startAnimationSequence() {
-		// Sequence the animations with delays
-		setTimeout(() => {
-			typingComplete = true;
-		}, 1000);
-		setTimeout(() => {
-			showSubtitle = true;
-		}, 2500);
-		setTimeout(() => {
-			showDescription = true;
-		}, 3000);
-		setTimeout(() => {
-			showButtons = true;
-		}, 3500);
-		setTimeout(() => {
-			showSocial = true;
-		}, 4000);
+		sizeCanvas();
 	}
 
 	onMount(() => {
-		// Initialize canvas context
-		if (canvas) {
+		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		if (canvas && !reduceMotion) {
 			ctx = canvas.getContext('2d');
 			initParticles();
-
-			// Add resize event listener
 			window.addEventListener('resize', handleResize);
 		}
 
-		// Start animation sequence
-		startAnimationSequence();
-
-		// Cleanup on component unmount
 		return () => {
 			window.removeEventListener('resize', handleResize);
-			if (animationFrame) {
-				cancelAnimationFrame(animationFrame);
-			}
+			if (animationFrame) cancelAnimationFrame(animationFrame);
 		};
 	});
 </script>
 
-<!-- DEBUG: Log when Hero component mounts -->
-{#if false}
-	{@html `<script>console.log('Hero button container debug');</script>`}
-{/if}
-
 <section
 	id="hero"
-	class="relative min-h-screen flex items-center justify-center overflow-hidden pb-24 lg:pb-0"
+	class="relative flex min-h-screen items-center justify-center overflow-hidden pb-24 lg:pb-0"
 >
-	<!-- Wrapper for background elements to ensure clipping -->
-	<div class="absolute inset-0 overflow-hidden isolate">
-		<!-- Particle background -->
-		<canvas bind:this={canvas} class="absolute top-0 left-0 w-full h-full opacity-40"></canvas>
-
-		<!-- Primary background with more distinct colors -->
-		<div class="absolute inset-0 bg-gradient-to-br from-[#162440] to-[#1e2c48]"></div>
-
-		<!-- Angled background banner with more vibrant colors -->
-		<div
-			class="banner w-full bg-gradient-to-r from-primary/40 via-accent-blue/30 to-primary/40 absolute"
-		></div>
-
-		<!-- Background decorative elements with more opacity -->
-		<div class="absolute top-0 right-0 w-64 h-64 rounded-full bg-accent-blue/20 blur-3xl"></div>
-		<div class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-accent-yellow/20 blur-3xl"></div>
-		<div class="absolute bottom-1/4 right-1/4 w-72 h-72 rounded-full bg-primary/20 blur-3xl"></div>
+	<!-- Background -->
+	<div class="absolute inset-0 isolate overflow-hidden">
+		<canvas bind:this={canvas} class="absolute inset-0 h-full w-full opacity-50"></canvas>
+		<div class="hero-bg absolute inset-0"></div>
+		<div class="absolute right-0 top-0 h-64 w-64 rounded-full bg-accent/10 blur-3xl"></div>
+		<div class="absolute bottom-0 left-0 h-96 w-96 rounded-full bg-secondary/10 blur-3xl"></div>
 	</div>
 
-	<div class="container mx-auto sm:px-2 px-0 relative z-10">
+	<div class="container relative z-10 mx-auto px-4">
 		<div
-			class="hero-content flex flex-col items-center justify-center text-center lg:flex-row-reverse lg:items-center lg:justify-center lg:text-left gap-8 lg:gap-16"
+			class="flex flex-col items-center justify-center gap-10 text-center lg:flex-row-reverse lg:gap-16 lg:text-left"
 		>
-			<!-- Portrait image -->
-			<div
-				class="portrait-container relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0"
-				use:animateOnScroll={{ threshold: 0.1, once: true }}
-			>
-				<!-- Portrait Background -->
-				<div class="absolute bottom-0 left-0 right-0 top-1/4 bg-accent-yellow/70 rounded-xl"></div>
-
+			<!-- Portrait -->
+			<div class="relative flex w-full max-w-xs justify-center sm:max-w-sm lg:w-1/2 lg:justify-end">
+				<div class="absolute inset-x-0 bottom-0 top-1/4 rounded-2xl bg-secondary/40"></div>
 				<img
 					src={portrait}
-					class="max-w-full h-auto drop-shadow-2xl relative z-10"
-					alt="Portrait of a software engineer and AI specialist from Iowa"
+					class="relative z-10 h-auto max-w-full rounded-xl drop-shadow-2xl"
+					alt="Portrait of Lucas Spain"
 					style="max-height: 70vh;"
+					width="1000"
+					fetchpriority="high"
 				/>
-
-				<!-- Decorative elements -->
-				<div
-					class="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-accent-blue animate-bounce-light"
-				></div>
-				<div
-					class="absolute -bottom-4 -left-4 w-8 h-8 rounded-full bg-accent-yellow animate-pulse-slow"
-				></div>
 			</div>
 
-			<!-- Text content -->
-			<div
-				class="text-content max-w-2xl w-full text-center lg:text-left lg:w-1/2 flex flex-col items-center lg:items-start"
-			>
-				<!-- Main heading with typing effect -->
-				<div class="typing-container mb-2">
-					<h1 class="text-4xl md:text-6xl font-bold text-primary">
-						<span class="inline-block">Hello, I'm </span>
-						<span class="inline-block text-accent-blue">Lucas Spain</span>
-					</h1>
+			<!-- Text -->
+			<div class="flex w-full max-w-2xl flex-col items-center lg:w-1/2 lg:items-start">
+				<p class="reveal mb-2 font-medium text-accent" style="--d: 0ms">Hello, I'm</p>
+				<h1 class="reveal text-4xl font-bold text-primary md:text-6xl" style="--d: 80ms">
+					Lucas Spain
+				</h1>
+				<h2
+					class="reveal mb-6 mt-2 text-2xl font-semibold opacity-90 md:text-3xl"
+					style="--d: 160ms"
+				>
+					Software &amp; AI Engineer
+				</h2>
+				<p class="reveal mb-8 max-w-xl text-lg opacity-80" style="--d: 240ms">
+					I build AI-powered applications with
+					<span class="font-semibold text-accent">LangGraph</span>,
+					<span class="font-semibold text-accent">FastAPI</span>, and
+					<span class="font-semibold text-accent">retrieval-augmented generation</span> — from prototype
+					to production.
+				</p>
+
+				<div
+					class="reveal mb-8 flex flex-wrap justify-center gap-4 lg:justify-start"
+					style="--d: 320ms"
+				>
+					<a href="#projects" class="btn btn-primary">View Projects</a>
+					<a href="#contact" class="btn btn-outline">Get in Touch</a>
 				</div>
 
-				<!-- Subtitle -->
-				{#if showSubtitle}
-					<h2
-						class="text-2xl md:text-3xl font-semibold mb-6 text-accent"
-						in:slide={{ delay: 200, duration: 400 }}
-					>
-						Software Engineer
-					</h2>
-				{/if}
-
-				<!-- Description -->
-				{#if showDescription}
-					<p class="text-lg mb-8 max-w-xl" in:fade={{ delay: 300, duration: 500 }}>
-						I build innovative applications with <span class="text-accent-blue font-semibold"
-							>LangGraph</span
-						>,
-						<span class="text-accent-blue font-semibold">FastAPI</span>, and
-						<span class="text-accent-yellow font-semibold"
-							>Retrieval-Augmented Generation (RAG)</span
-						>.
-					</p>
-				{/if}
-
-				<!-- Call to action buttons -->
-				{#if showButtons}
-					<div
-						class="flex flex-wrap gap-4 mb-8 justify-center lg:justify-start"
-						in:slide={{ axis: 'x', delay: 400, duration: 500 }}
-					>
-						<a href="#projects" class="btn btn-primary">View Projects</a>
-						<a href="#contact" class="btn btn-outline">Contact Me</a>
-						<!-- TODO: Restore resume download when ready -->
-						<!-- <a href="/resume.pdf" class="btn btn-ghost">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								class="w-5 h-5 mr-2"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-								/>
-							</svg>
-							Resume
-						</a> -->
-					</div>
-				{/if}
-
-				<!-- Social links -->
-				{#if showSocial}
-					<div
-						class="social-links w-full flex justify-center lg:justify-start"
-						use:staggerChildren={{ selector: '.social-item', staggerTime: 100 }}
-					>
-						{#each socialLinks as link, i}
-							<a
-								href={link.url}
-								target="_blank"
-								rel="noopener noreferrer"
-								class="social-item btn btn-circle btn-ghost hover:text-primary transition-colors duration-300"
-								aria-label={link.name}
-							>
-								{@html link.icon}
-							</a>
-						{/each}
-					</div>
-				{/if}
-				<!-- Social links already above -->
+				<div class="reveal flex justify-center gap-1 lg:justify-start" style="--d: 400ms">
+					{#each socialLinks as link}
+						<a
+							href={link.url}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="btn btn-circle btn-ghost hover:text-primary"
+							aria-label={link.name}
+						>
+							{@html link.icon}
+						</a>
+					{/each}
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- Down chevron scroll indicator, absolutely positioned at bottom center -->
+
+	<!-- Scroll indicator -->
 	<a
 		href="#about"
-		class="absolute inset-x-0 mx-auto bottom-4 lg:bottom-8 flex justify-center text-primary opacity-80 hover:opacity-100 transition-opacity animate-bounce z-20"
-		aria-label="Scroll Down"
+		class="absolute inset-x-0 bottom-6 z-20 mx-auto flex animate-bounce justify-center text-primary opacity-80 transition-opacity hover:opacity-100"
+		aria-label="Scroll to about section"
 	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
@@ -348,7 +203,7 @@
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			class="w-8 h-8"
+			class="h-8 w-8"
 		>
 			<path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
 		</svg>
@@ -356,145 +211,37 @@
 </section>
 
 <style lang="postcss">
-	.portrait-container {
-		/* Add some perspective if desired */
-		/* perspective: 1000px; */
+	.hero-bg {
+		background: linear-gradient(135deg, #162440 0%, #1e2c48 100%);
+		z-index: -1;
 	}
 
-	.portrait-container img {
-		/* Optional: Add a slight rotation or transform for more dynamic pop */
-		/* transform: rotateY(-5deg) rotateX(2deg); */
-		transition: transform 0.3s ease-out;
+	:global([data-theme='light']) .hero-bg {
+		background: linear-gradient(135deg, #f0f4fa 0%, #e2e8f0 100%);
 	}
 
-	/* Hover effect example */
-	/* .portrait-container:hover img {
-		transform: scale(1.05) rotateY(0deg) rotateX(0deg);
-	} */
-
-	.banner {
-		/* Adjust banner transform to ensure it looks good with the layout */
-		bottom: 0;
-		/* Removed left/right: -50% to prevent overflow */
-		height: 400px; /* Example height */
-		transform: skewY(-4deg); /* Maintain skew */
-		transform-origin: bottom left;
-		z-index: 5; /* Make sure it's behind text but potentially over lowest bg elements */
-		transition:
-			background 0.5s,
-			filter 0.5s;
+	.reveal {
+		animation: reveal 0.6s ease-out both;
+		animation-delay: var(--d, 0ms);
 	}
 
-	/* Light mode override for banner */
-	:global([data-theme='light']) .banner {
-		background: linear-gradient(
-			to right,
-			rgba(180, 210, 255, 0.25),
-			rgba(255, 255, 255, 0.18),
-			rgba(180, 210, 255, 0.25)
-		) !important;
-	}
-
-	/* Main hero gradient background */
-	:global([data-theme='light']) .absolute.bg-gradient-to-br {
-		background: linear-gradient(135deg, #f0f4fa 0%, #e2e8f0 100%) !important;
-		transition: background 0.5s;
-	}
-
-	/* Blurred circle backgrounds - light mode overrides */
-	:global([data-theme='light']) .absolute.bg-accent-blue\/20 {
-		background-color: rgba(100, 180, 255, 0.15) !important;
-		transition:
-			background 0.5s,
-			filter 0.5s;
-	}
-	:global([data-theme='light']) .absolute.bg-accent-yellow\/20 {
-		background-color: rgba(255, 230, 120, 0.13) !important;
-		transition:
-			background 0.5s,
-			filter 0.5s;
-	}
-	:global([data-theme='light']) .absolute.bg-primary\/20 {
-		background-color: rgba(120, 180, 255, 0.1) !important;
-		transition:
-			background 0.5s,
-			filter 0.5s;
-	}
-
-	/* Add transition for all backgrounds for smooth fade */
-	.absolute.bg-accent-blue\/20,
-	.absolute.bg-accent-yellow\/20,
-	.absolute.bg-primary\/20,
-	.banner,
-	.absolute.bg-gradient-to-br {
-		transition:
-			background 0.5s,
-			filter 0.5s;
-	}
-
-	/* Adjust particle canvas z-index if needed */
-	canvas {
-		z-index: 1;
-		opacity: 0.3; /* Adjusted opacity */
-	}
-
-	/* Ensure background elements are behind everything */
-	.absolute.bg-accent-blue\/20,
-	.absolute.bg-accent-yellow\/20,
-	.absolute.bg-primary\/20 {
-		z-index: 0;
-	}
-
-	/* Adjust hero content z-index to be above background elements */
-	.hero-content {
-		position: relative;
-		z-index: 10; /* Above image and banner */
-	}
-
-	/* Typing cursor animation */
-	@keyframes typing {
+	@keyframes reveal {
 		from {
-			width: 0;
+			opacity: 0;
+			transform: translateY(16px);
 		}
 		to {
-			width: 100%;
-		}
-	}
-
-	@keyframes blink-caret {
-		from,
-		to {
-			border-color: transparent;
-		}
-		50% {
-			border-color: var(--p);
-		}
-	}
-
-	/* Pulse animation for decorative elements */
-	@keyframes pulse-slow {
-		0%,
-		100% {
-			transform: scale(1);
-			opacity: 0.8;
-		}
-		50% {
-			transform: scale(1.05);
 			opacity: 1;
-		}
-	}
-
-	.animate-bounce-light {
-		animation: bounce-light 3s infinite ease-in-out;
-	}
-
-	@keyframes bounce-light {
-		0%,
-		100% {
 			transform: translateY(0);
 		}
-		50% {
-			transform: translateY(-10px);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.animate-bounce {
+			animation: none;
+		}
+		.reveal {
+			animation: none;
 		}
 	}
 </style>

@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { animateOnScroll } from '$lib/actions/animate';
-	import { onMount } from 'svelte';
-	import { fade, fly } from 'svelte/transition';
-	// Profile image
 	import portrait from '$lib/images/portrait-2.jpeg';
 
 	// Career journey milestones
@@ -26,33 +23,14 @@
 				'Developing AI applications utilizing LangGraph, LangChain, and OpenAI APIs with RAG techniques.'
 		}
 	];
-
-	let visible = false;
-
-	onMount(() => {
-		visible = true;
-	});
 </script>
-
-<svelte:head>
-	<title>About | Lucas Spain - Software Engineer, AI, Web Development, Iowa</title>
-	<meta
-		name="description"
-		content="Learn about Lucas Spain's journey from Maquoketa to Davenport, Iowa City, and the Quad Cities. Software engineer and AI specialist with experience in web development, agents, LangChain, prompt engineering, and computer science. Alumni of University of Iowa."
-	/>
-	<meta
-		name="keywords"
-		content="About, Lucas Spain, software engineer, AI, web development, agents, Maquoketa, Iowa, Iowa City, UIowa, University of Iowa, Quad Cities, Davenport, Moline, East Moline, computer science, John Deere, LangChain, LangGraph, prompt engineering"
-	/>
-	<meta name="robots" content="index, follow" />
-</svelte:head>
 
 <section id="about" class="page-section bg-base-100 py-20">
 	<div class="container mx-auto px-4">
 		<!-- Section header -->
 		<div class="text-center mb-16" use:animateOnScroll>
 			<h2 class="section-title text-primary">About Me</h2>
-			<p class="section-subtitle">My journey from operations to AI solutions</p>
+			<p class="section-subtitle">From full-stack engineering to AI solutions</p>
 		</div>
 
 		<!-- Centered single-column layout -->
@@ -64,7 +42,8 @@
 					<div class="relative mx-auto max-w-md">
 						<img
 							src={portrait}
-							alt="Professional portrait"
+							alt="Lucas Spain"
+							loading="lazy"
 							class="rounded-lg shadow-xl w-full object-cover aspect-[4/5]"
 						/>
 
@@ -123,7 +102,7 @@
 										/>
 									</svg>
 								</span>
-								<span>3+ Years Professional Experience</span>
+								<span>4+ Years Professional Experience</span>
 							</li>
 							<li class="flex items-center">
 								<span class="text-primary mr-2 flex-shrink-0">
@@ -168,68 +147,50 @@
 				</div>
 
 				<!-- Right column: Bio and career journey -->
-				<div class="about-content">
-					{#if visible}
-						<div in:fly={{ y: 20, duration: 800 }}>
-							<h3 class="text-2xl font-bold mb-4">My Story</h3>
-							<div class="space-y-4 mb-12 text-base-content/80">
-								<p>
-									I'm a software engineer with a journey from full-stack development to AI
-									solutions. My diverse background gives me a holistic perspective on building
-									robust, scalable applications.
-								</p>
-								<p>
-									Starting at John Deere in their Information Technology Development Program (ITDP),
-									I gained valuable insights into infrastructure, deployment, and system
-									reliability. This foundation helped me excel in site reliability engineering and
-									cloud infrastructure management.
-								</p>
-								<p>
-									Today, I specialize in building AI-powered applications using
-									<span class="font-semibold text-accent">LangChain</span>,
-									<span class="font-semibold text-accent">LangGraph</span>, and other cutting-edge
-									AI technologies. I'm passionate about creating intelligent systems that solve
-									real-world problems.
-								</p>
-							</div>
-
-							<!-- Career journey -->
-							<h3 class="text-2xl font-bold mb-8">Career Journey</h3>
-							<div class="relative border-l-2 border-primary/30 ml-4 space-y-12 py-4">
-								{#each careerJourney as milestone, i}
-									<div
-										class="milestone relative pl-10"
-										in:fly={{ y: 20, duration: 500, delay: 300 + i * 200 }}
-									>
-										<!-- Timeline Dot -->
-										<div
-											class="absolute -left-[calc(0.5rem+1px)] top-1 w-4 h-4 bg-primary rounded-full border-2 border-base-100 ring-4 ring-primary/10"
-										></div>
-
-										<!-- Content -->
-										<div class="ml-4">
-											<span class="badge badge-outline badge-primary mb-1">{milestone.year}</span>
-											<h4 class="text-lg font-semibold text-primary">{milestone.title}</h4>
-											<p class="mt-1 text-sm text-base-content/80">{milestone.description}</p>
-										</div>
-									</div>
-								{/each}
-							</div>
+				<div class="about-content" use:animateOnScroll>
+					<div>
+						<h3 class="text-2xl font-bold mb-4">My Story</h3>
+						<div class="space-y-4 mb-12 text-base-content/80">
+							<p>
+								I'm a software engineer who moved from full-stack web development into AI. That path
+								means I'm comfortable across the whole stack — from infrastructure and pipelines up
+								to the interfaces people actually use.
+							</p>
+							<p>
+								I started at John Deere in the Information Technology Development Program (ITDP),
+								where I worked on full-stack applications, CI/CD pipelines, and AWS infrastructure.
+								That grounding in deployment and site reliability still shapes how I build today.
+							</p>
+							<p>
+								Now I focus on AI applications built with
+								<span class="font-semibold text-accent">LangChain</span>,
+								<span class="font-semibold text-accent">LangGraph</span>, and the OpenAI APIs —
+								designing retrieval systems and agent workflows that hold up in production.
+							</p>
 						</div>
-					{/if}
+
+						<!-- Career journey -->
+						<h3 class="text-2xl font-bold mb-8">Career Journey</h3>
+						<div class="relative border-l-2 border-primary/30 ml-4 space-y-12 py-4">
+							{#each careerJourney as milestone}
+								<div class="milestone relative pl-10">
+									<!-- Timeline Dot -->
+									<div
+										class="absolute -left-[calc(0.5rem+1px)] top-1 w-4 h-4 bg-primary rounded-full border-2 border-base-100 ring-4 ring-primary/10"
+									></div>
+
+									<!-- Content -->
+									<div class="ml-4">
+										<span class="badge badge-outline badge-primary mb-1">{milestone.year}</span>
+										<h4 class="text-lg font-semibold text-primary">{milestone.title}</h4>
+										<p class="mt-1 text-sm text-base-content/80">{milestone.description}</p>
+									</div>
+								</div>
+							{/each}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-<style>
-	/* Removed old career-timeline styles */
-	/* Removed .milestone::after, .milestone-content */
-
-	/* Keep hover effect if desired, or remove */
-	/*.milestone-content:hover {
-		transform: translateY(-5px);
-		box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
-	}*/
-</style>

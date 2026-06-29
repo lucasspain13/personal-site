@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { animateOnScroll } from '$lib/actions/animate';
 	import { onMount } from 'svelte';
-	import { fade, fly, scale } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
+
+	// Set after mount so it works with prerendering (no `window` at build time).
+	let nextUrl = 'https://www.lucas-spain.com/?success=true';
 
 	// Form state
 	let name = '';
 	let email = '';
 	let subject = '';
 	let message = '';
-	let isSubmitting = false;
 	let submitSuccess = false;
 	let submitError = false;
 
@@ -63,31 +65,15 @@
 		}
 	}
 
-	let visible = false;
-
 	onMount(() => {
-		visible = true;
+		nextUrl = `${window.location.origin}/?success=true`;
 
-		// Check for success query parameter
 		const urlParams = new URLSearchParams(window.location.search);
 		if (urlParams.get('success') === 'true') {
 			submitSuccess = true;
 		}
 	});
 </script>
-
-<svelte:head>
-	<title>Contact | Lucas Spain - Software Engineer, AI, Web Development, Iowa</title>
-	<meta
-		name="description"
-		content="Contact Lucas Spain, a software engineer and AI specialist based in Iowa, Quad Cities, and Maquoketa. Reach out for opportunities in web development, agents, and computer science. Alumni of University of Iowa."
-	/>
-	<meta
-		name="keywords"
-		content="Contact, Lucas Spain, software engineer, AI, web development, agents, Maquoketa, Iowa, Quad Cities, Moline, East Moline, Davenport, University of Iowa, computer science, John Deere, LangChain, LangGraph, prompt engineering"
-	/>
-	<meta name="robots" content="index, follow" />
-</svelte:head>
 
 <section id="contact" class="page-section bg-base-100 py-20">
 	<div class="container mx-auto px-4">
@@ -113,11 +99,7 @@
 						<!-- Hidden FormSubmit fields -->
 						<input type="hidden" name="_subject" value="New message from your website" />
 						<input type="hidden" name="_template" value="table" />
-						<input
-							type="hidden"
-							name="_next"
-							value="{window.location.origin}/contact?success=true"
-						/>
+						<input type="hidden" name="_next" value={nextUrl} />
 						<input type="hidden" name="_captcha" value="true" />
 						<input type="text" name="_honey" style="display:none" />
 						<!-- Name input -->
@@ -278,57 +260,49 @@
 				</div>
 			</div>
 
-			<!-- Right column: Contact information and map -->
-			<div class="contact-info">
-				{#if visible}
-					<div class="bg-base-200 rounded-lg shadow-md p-8 mb-8" in:fly={{ y: 20, duration: 500 }}>
-						<h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+			<!-- Right column: Contact information -->
+			<div class="contact-info" use:animateOnScroll>
+				<div class="bg-base-200 rounded-lg shadow-md p-8 mb-8">
+					<h3 class="text-2xl font-bold mb-6">Contact Information</h3>
 
-						<ul class="space-y-6">
-							{#each contactInfo as info, i}
-								<li
-									class="flex flex-row items-center gap-4 flex-nowrap"
-									in:fly={{ y: 10, duration: 300, delay: i * 100 }}
+					<ul class="space-y-6">
+						{#each contactInfo as info}
+							<li class="flex flex-row items-center gap-4 flex-nowrap">
+								<div
+									class="w-12 h-12 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center text-primary-content shadow-md flex-shrink-0"
 								>
-									<div
-										class="w-12 h-12 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center text-primary-content shadow-md flex-shrink-0"
-									>
-										{@html info.icon}
-									</div>
-									<div class="flex flex-row items-center gap-2 min-w-0">
-										<span class="font-semibold whitespace-nowrap">{info.type}:</span>
-										{#if info.link}
-											<a
-												href={info.link}
-												target="_blank"
-												rel="noopener noreferrer"
-												class="text-primary hover:underline truncate max-w-[180px] sm:max-w-[240px] text-xs sm:text-sm"
-												title={info.value}
-											>
-												{info.value}
-											</a>
-										{:else}
-											<span class="truncate text-xs sm:text-sm">{info.value}</span>
-										{/if}
-									</div>
-								</li>
-							{/each}
-						</ul>
-					</div>
+									{@html info.icon}
+								</div>
+								<div class="flex flex-row items-center gap-2 min-w-0">
+									<span class="font-semibold whitespace-nowrap">{info.type}:</span>
+									{#if info.link}
+										<a
+											href={info.link}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-primary hover:underline truncate max-w-[180px] sm:max-w-[240px] text-xs sm:text-sm"
+											title={info.value}
+										>
+											{info.value}
+										</a>
+									{:else}
+										<span class="truncate text-xs sm:text-sm">{info.value}</span>
+									{/if}
+								</div>
+							</li>
+						{/each}
+					</ul>
+				</div>
 
-					<!-- Availability -->
-					<div
-						class="bg-base-200 rounded-lg shadow-md p-8"
-						in:fly={{ y: 20, duration: 500, delay: 200 }}
-					>
-						<h3 class="text-xl font-bold mb-4">Education</h3>
-						<div class="mb-4">
-							<p class="font-semibold">The University of Iowa</p>
-							<p>Master of Computer Science</p>
-							<p>Graduated: May 2022</p>
-						</div>
+				<!-- Education -->
+				<div class="bg-base-200 rounded-lg shadow-md p-8">
+					<h3 class="text-xl font-bold mb-4">Education</h3>
+					<div>
+						<p class="font-semibold">The University of Iowa</p>
+						<p>Master of Computer Science</p>
+						<p>Graduated: May 2022</p>
 					</div>
-				{/if}
+				</div>
 			</div>
 		</div>
 	</div>

@@ -1,38 +1,19 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	// Removed fly and quintOut imports as we'll use CSS transitions
 
-	// Theme state
 	let theme = 'light';
 	let mounted = false;
 
-	// Initialize theme on mount
 	onMount(() => {
-		// Check for saved theme preference or use system preference
-		const savedTheme = localStorage.getItem('theme');
-
-		if (savedTheme) {
-			theme = savedTheme;
-		} else {
-			// Check system preference
-			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-			theme = prefersDark ? 'dark' : 'light';
-		}
-
-		applyTheme(theme);
+		// The pre-paint script in app.html already set data-theme; mirror it here.
+		theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
 		mounted = true;
 	});
 
-	// Toggle between light and dark themes
 	function toggleTheme() {
 		theme = theme === 'light' ? 'dark' : 'light';
-		applyTheme(theme);
+		document.documentElement.setAttribute('data-theme', theme);
 		localStorage.setItem('theme', theme);
-	}
-
-	// Apply theme to HTML element
-	function applyTheme(newTheme: string) {
-		document.documentElement.setAttribute('data-theme', newTheme);
 	}
 </script>
 
@@ -43,7 +24,6 @@
 >
 	{#if mounted}
 		{#if theme === 'light'}
-			<!-- Sun icon: Flies in from right, out to left -->
 			<div class="icon-wrapper sun-icon">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +41,6 @@
 				</svg>
 			</div>
 		{:else}
-			<!-- Moon icon: Flies in from right, out to left -->
 			<div class="icon-wrapper moon-icon">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -84,32 +63,19 @@
 
 <style>
 	.icon-wrapper {
-		/* Center the icon within the button space */
 		display: grid;
 		place-items: center;
-		/* Ensure wrappers occupy the same space */
 		grid-area: 1 / 1 / 2 / 2;
-		/* Add the transition */
 		transition:
 			opacity 0.4s ease-in-out,
 			transform 0.4s ease-in-out;
-		/* Start transparent and slightly rotated/scaled */
-		opacity: 1; /* Start visible */
-		transform: rotate(0deg) scale(1);
 	}
 
-	/* We might not need explicit enter/exit states if Svelte's DOM manipulation + transition works */
-	/* Example of how you *could* define states if needed:
-    .sun-icon.entering, .moon-icon.entering { opacity: 1; transform: rotate(0deg) scale(1); }
-    .sun-icon.leaving, .moon-icon.leaving { opacity: 0; transform: rotate(-90deg) scale(0.8); }
-    */
-
 	button {
-		/* Ensure the button itself acts as a grid container for the icons */
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr;
-		transition: transform 0.2s ease; /* Keep button hover/active effect */
+		transition: transform 0.2s ease;
 	}
 
 	button:hover {

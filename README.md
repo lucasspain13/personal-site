@@ -1,38 +1,39 @@
-# create-svelte
+# lucas-spain.com
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+My personal site — a single-page portfolio for Lucas Spain, software & AI engineer.
 
-## Creating a project
+Built with [SvelteKit](https://kit.svelte.dev/), [Tailwind CSS](https://tailwindcss.com/),
+and [daisyUI](https://daisyui.com/), and prerendered to static files via
+`@sveltejs/adapter-static`.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Development
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+npm install
+npm run dev        # start the dev server
 ```
 
-## Building
-
-To create a production version of your app:
+## Build
 
 ```bash
-npm run build
+npm run build      # prerender to ./build
+npm run preview    # serve the production build locally
 ```
 
-You can preview the production build with `npm run preview`.
+## Checks
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+npm run check      # svelte-check (type checking)
+npm run lint       # prettier + eslint
+npm run format     # prettier --write
+```
+
+## Structure
+
+The whole site lives on one route (`src/routes/+page.svelte`), composed of section
+components in `src/routes/` (Hero, About, Highlights, Skills, Projects, Experience,
+Contact). Shared pieces (header, footer, theme toggle, scroll-to-top) are in
+`src/lib/components/`, and the scroll-reveal action is in `src/lib/actions/animate.ts`.
+
+The contact form posts to [FormSubmit](https://formsubmit.co/). Light/dark theme is
+applied before paint by an inline script in `src/app.html` and toggled by `ThemeToggle`.

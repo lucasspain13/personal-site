@@ -37,37 +37,12 @@
 		"vitest": "^2.0.0"
 	},
 	"keywords": [
-		"svelte",
-		"vite",
-		"javascript",
-		"web development",
-		"software engineer",
-		"full stack developer",
+		"portfolio",
 		"sveltekit",
 		"tailwindcss",
 		"daisyui",
-		"playwright",
-		"vitest",
-		"react",
-		"javascript",
-		"python",
-		"spring boot",
-		"java",
-		"Lucas",
-		"Spain",
-		"developer",
-		"engineer",
-		"software",
-		"devops",
-		"aws",
-		"git",
-		"github",
-		"AI",
-		"recruit",
-		"open to work"
+		"software engineer",
+		"ai engineer"
 	],
-	"type": "module",
-	"dependencies": {
-		"svelte-intersection-observer": "^1.0.0"
-	}
+	"type": "module"
 }

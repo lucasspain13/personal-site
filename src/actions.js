@@ -1,7 +1,12 @@
+/**
+ * Svelte action: calls `callback` when a click occurs outside `node`.
+ * @param {HTMLElement} node
+ * @param {() => void} callback
+ */
 export const clickAway = (node, callback) => {
+	/** @param {MouseEvent} event */
 	const handleClick = (event) => {
-		if (!node.contains(event.target)) {
-			console.log('Clicked outside of modal');
+		if (event.target instanceof Node && !node.contains(event.target)) {
 			callback();
 		}
 	};

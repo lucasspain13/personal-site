@@ -116,9 +116,7 @@ export default {
 					warning: '#EEB902',
 					error: '#F87272'
 				}
-			},
-			'dark',
-			'nord'
+			}
 		],
 		darkTheme: 'dark'
 	}
