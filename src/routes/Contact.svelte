@@ -80,7 +80,7 @@
 		<!-- Section header -->
 		<div class="text-center mb-16" use:animateOnScroll>
 			<h2 class="section-title text-primary">Get In Touch</h2>
-			<p class="section-subtitle">Let's discuss your project or opportunities</p>
+			<p class="section-subtitle">The best ways to reach me</p>
 		</div>
 
 		<!-- Contact content -->

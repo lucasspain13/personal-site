@@ -5,10 +5,10 @@
 		{
 			title: 'Software Engineer, AI Solutions Team',
 			company: 'John Deere',
-			period: 'February 2025 – Present',
+			period: 'February 2025 to Present',
 			location: 'Moline, IL',
 			description:
-				'Building AI applications: coding agents, data-processing graphs, and deployed models, with a focus on scalable, efficient solutions across AI/ML frameworks and cloud services.',
+				'Building AI applications: coding agents, data-processing graphs, and deployed models across AI/ML frameworks and cloud services.',
 			achievements: [
 				'Developed applications integrating AI agents to assist with coding tasks.',
 				'Built complex LangGraph graphs for data processing and analysis.',
@@ -35,10 +35,10 @@
 		{
 			title: 'Information Technology Development Program (ITDP)',
 			company: 'John Deere',
-			period: 'June 2022 – February 2025',
+			period: 'June 2022 to February 2025',
 			location: 'Moline, IL',
 			description:
-				'Developed full-stack applications, managed cloud infrastructure, and owned site reliability — delivering features through secure coding, CI/CD, and infrastructure work.',
+				'Developed full-stack applications, managed cloud infrastructure, and owned site reliability, delivering features through secure coding, CI/CD, and infrastructure work.',
 			achievements: [
 				'Kept applications reliable through quality checks and infrastructure tuning (SRE).',
 				'Designed CI/CD pipelines using GitHub Actions and AWS.',
@@ -62,7 +62,7 @@
 		{
 			title: 'Graduate Teaching Assistant',
 			company: 'University of Iowa, Department of Computer Science',
-			period: 'August 2021 – May 2022',
+			period: 'August 2021 to May 2022',
 			location: 'Iowa City, IA',
 			description:
 				'Supported undergraduates in programming and logic by leading lab sections and giving feedback on their work.',
@@ -79,7 +79,7 @@
 	<div class="container mx-auto px-4">
 		<div class="mb-16 text-center" use:animateOnScroll>
 			<h2 class="section-title text-primary">Experience</h2>
-			<p class="section-subtitle">My professional journey so far</p>
+			<p class="section-subtitle">Where I've worked</p>
 		</div>
 
 		<div class="mx-auto max-w-3xl">
@@ -137,8 +137,7 @@
 						d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
 					/>
 				</svg>
-				<span
-					>My full resume is in the works — feel free to reach out directly in the meantime.</span
+				<span>My full resume is in the works. Feel free to reach out directly in the meantime.</span
 				>
 			</div>
 		</div>

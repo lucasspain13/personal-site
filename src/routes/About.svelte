@@ -19,8 +19,7 @@
 		{
 			year: '2025-Present',
 			title: 'Software Engineer, AI Solutions Team',
-			description:
-				'Developing AI applications utilizing LangGraph, LangChain, and OpenAI APIs with RAG techniques.'
+			description: 'Building AI applications with LangGraph, LangChain, the OpenAI APIs, and RAG.'
 		}
 	];
 </script>
@@ -30,7 +29,7 @@
 		<!-- Section header -->
 		<div class="text-center mb-16" use:animateOnScroll>
 			<h2 class="section-title text-primary">About Me</h2>
-			<p class="section-subtitle">From full-stack engineering to AI solutions</p>
+			<p class="section-subtitle">From full-stack engineering to AI</p>
 		</div>
 
 		<!-- Centered single-column layout -->
@@ -152,20 +151,19 @@
 						<h3 class="text-2xl font-bold mb-4">My Story</h3>
 						<div class="space-y-4 mb-12 text-base-content/80">
 							<p>
-								I'm a software engineer who moved from full-stack web development into AI. That path
-								means I'm comfortable across the whole stack — from infrastructure and pipelines up
-								to the interfaces people actually use.
+								I'm a software engineer who moved from full-stack web development into AI. I've
+								worked across the whole stack, from infrastructure and pipelines to the interfaces
+								people use.
 							</p>
 							<p>
 								I started at John Deere in the Information Technology Development Program (ITDP),
 								where I worked on full-stack applications, CI/CD pipelines, and AWS infrastructure.
-								That grounding in deployment and site reliability still shapes how I build today.
+								That work in deployment and site reliability still informs how I work today.
 							</p>
 							<p>
-								Now I focus on AI applications built with
+								Now I focus on AI applications, building retrieval systems and agent workflows with
 								<span class="font-semibold text-accent">LangChain</span>,
-								<span class="font-semibold text-accent">LangGraph</span>, and the OpenAI APIs —
-								designing retrieval systems and agent workflows that hold up in production.
+								<span class="font-semibold text-accent">LangGraph</span>, and the OpenAI APIs.
 							</p>
 						</div>
 

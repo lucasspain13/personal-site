@@ -19,7 +19,7 @@
 		{
 			title: 'Pride in Motion',
 			description:
-				'The official site for Pride in Motion, the Quad Cities LGBTQIA+ recreational sports league (~200 visitors/week). A full-stack app with event listings, schedules, standings, online registration, and a gated admin CMS — backed by Supabase and served from AWS S3 + CloudFront.',
+				'The official site for Pride in Motion, the Quad Cities LGBTQIA+ recreational sports league (~200 visitors/week). A full-stack app with event listings, schedules, standings, online registration, and a gated admin CMS, backed by Supabase and served from AWS S3 and CloudFront.',
 			tags: ['React', 'TypeScript', 'Supabase', 'Mantine', 'AWS'],
 			category: 'Web Development',
 			featured: true,
@@ -28,7 +28,7 @@
 			liveUrl: 'https://prideinmotion.com'
 		},
 		{
-			title: 'Gatsby — Local Voice Assistant',
+			title: 'Gatsby: Local Voice Assistant',
 			description:
 				'A fully local voice assistant using LangGraph and Ollama for inference, with a Whisper-based speech engine over the Wyoming protocol for home automation.',
 			tags: ['LangGraph', 'Ollama', 'Qdrant', 'FastAPI', 'Docker'],
@@ -40,7 +40,7 @@
 		{
 			title: 'Personal Website',
 			description:
-				'This site — built with SvelteKit and TailwindCSS, and developed with help from agentic coding. A home for my work and projects.',
+				'This site, built with SvelteKit and TailwindCSS. I used agentic coding tools to help put it together.',
 			tags: ['SvelteKit', 'TypeScript', 'TailwindCSS', 'Agentic Coding'],
 			category: 'Web Development',
 			featured: true,
@@ -60,14 +60,14 @@
 		{
 			title: 'Scarf Pattern Generator',
 			description:
-				'A Python desktop app, built before the generative-AI era, that produces scarf patterns with images and printable instructions — symmetric or asymmetric, up to three colors, with adjustable ratios.',
+				'A Python desktop app, built before the generative-AI era, that produces scarf patterns with images and printable instructions. It supports symmetric or asymmetric patterns, up to three colors, with adjustable ratios.',
 			tags: ['Python', 'Tkinter', 'Algorithms'],
 			category: 'Other',
 			featured: false,
 			type: 'personal'
 		},
 		{
-			title: 'Wyoming Whisper — Multi-User Voice Recognition',
+			title: 'Wyoming Whisper: Multi-User Voice Recognition',
 			description:
 				'A reusable Docker container forked from an existing transcriber for a local voice assistant. It adds speaker labeling by matching voices against embeddings stored locally.',
 			tags: ['STT', 'Whisper', 'Embeddings', 'Python', 'Docker'],
@@ -173,7 +173,7 @@
 	<div class="container mx-auto px-4">
 		<div class="mb-12 text-center" use:animateOnScroll>
 			<h2 class="section-title text-primary">Projects</h2>
-			<p class="section-subtitle">A mix of personal builds and work I'm proud of</p>
+			<p class="section-subtitle">A mix of personal projects and work</p>
 		</div>
 
 		<!-- Filters -->
@@ -252,9 +252,7 @@
 										>
 											<path d="M15 3h6v6" />
 											<path d="M10 14 21 3" />
-											<path
-												d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
-											/>
+											<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
 										</svg>
 										Visit Site
 									</a>
