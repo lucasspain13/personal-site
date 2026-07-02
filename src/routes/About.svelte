@@ -40,7 +40,7 @@
 <section id="about" class="py-20 md:py-28">
 	<div class="wrap">
 		<div use:animateOnScroll>
-			<SectionHead number="01" title="About" note="From full-stack engineering to AI" />
+			<SectionHead number="01" title="About" />
 		</div>
 
 		<div class="grid gap-14 lg:grid-cols-12 lg:gap-16">
@@ -76,15 +76,14 @@
 			</div>
 
 			<div class="lg:col-span-5" use:animateOnScroll>
-				<figure class="max-w-sm">
+				<div class="max-w-sm">
 					<img
 						src={portrait}
 						alt="Lucas Spain"
 						loading="lazy"
 						class="plate aspect-[4/5] w-full object-cover"
 					/>
-					<figcaption class="meta mt-3 opacity-60">fig. 02 — off duty</figcaption>
-				</figure>
+				</div>
 
 				<dl class="mt-10 max-w-sm">
 					{#each quickFacts as fact}

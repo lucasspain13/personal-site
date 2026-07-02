@@ -148,7 +148,7 @@
 <section id="skills" class="py-20 md:py-28">
 	<div class="wrap">
 		<div use:animateOnScroll>
-			<SectionHead number="03" title="Skills &amp; tools" note="What I actually reach for" />
+			<SectionHead number="03" title="Skills &amp; tools" />
 		</div>
 
 		<ul use:staggerChildren={{ selector: '.skill-group', staggerTime: 80 }}>

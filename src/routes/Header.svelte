@@ -35,7 +35,7 @@
 		<div class="flex items-center gap-4">
 			<ThemeToggle />
 
-			<div class="dropdown dropdown-end md:hidden" use:clickAway={closeMenu}>
+			<div class="relative md:hidden" use:clickAway={closeMenu}>
 				<button
 					type="button"
 					class="meta border border-base-content px-3 py-2"
@@ -48,7 +48,7 @@
 				{#if isOpen}
 					<ul
 						role="list"
-						class="dropdown-content z-[1] mt-2 w-56 border border-base-content bg-base-100 shadow-[6px_6px_0_0] shadow-base-content/20"
+						class="absolute right-0 top-full z-[1] mt-2 w-56 border border-base-content bg-base-100 shadow-[6px_6px_0_0] shadow-base-content/20"
 					>
 						{#each links as link, i}
 							<li class="border-b border-base-300 last:border-b-0">

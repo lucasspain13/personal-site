@@ -38,7 +38,7 @@
 <section id="highlights" class="border-t border-base-300 bg-base-200 py-20 md:py-28">
 	<div class="wrap">
 		<div use:animateOnScroll>
-			<SectionHead number="02" title="What I do" note="The short version" />
+			<SectionHead number="02" title="What I do" />
 		</div>
 
 		<ol

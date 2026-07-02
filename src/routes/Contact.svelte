@@ -47,7 +47,7 @@
 <section id="contact" class="border-t border-base-300 bg-base-200 py-20 md:py-28">
 	<div class="wrap">
 		<div use:animateOnScroll>
-			<SectionHead number="06" title="Get in touch" note="The form actually works" />
+			<SectionHead number="06" title="Get in touch" />
 		</div>
 
 		<div class="grid gap-14 lg:grid-cols-12 lg:gap-16">

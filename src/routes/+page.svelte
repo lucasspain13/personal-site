@@ -9,7 +9,7 @@
 
 	const seoTitle = 'Lucas Spain | Software & AI Engineer';
 	const seoDescription =
-		'Lucas Spain is a software and AI engineer in the Quad Cities, building AI applications with LangGraph, LangChain, and RAG, plus full-stack and cloud work. Open to new opportunities.';
+		'Lucas Spain is a software and AI engineer in the Quad Cities, building AI applications with LangGraph, LangChain, and RAG, plus full-stack and cloud work.';
 	const seoKeywords =
 		'Lucas Spain, software engineer, AI engineer, LangChain, LangGraph, RAG, full stack developer, web development, cloud infrastructure, Iowa, Quad Cities';
 </script>

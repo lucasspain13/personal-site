@@ -1,7 +1,6 @@
 <script lang="ts">
 	export let number: string;
 	export let title: string;
-	export let note = '';
 </script>
 
 <div class="mb-12 border-t-2 border-base-content pt-4 md:mb-16">
@@ -11,7 +10,4 @@
 		</h2>
 		<span class="meta text-primary" aria-hidden="true">{number}</span>
 	</div>
-	{#if note}
-		<p class="meta mt-3 opacity-60">{note}</p>
-	{/if}
 </div>

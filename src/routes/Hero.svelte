@@ -16,7 +16,7 @@
 		<div class="lg:col-span-7">
 			<p class="meta mb-6">
 				<span class="text-primary" aria-hidden="true">●</span>
-				Open to new opportunities · Bettendorf, Iowa
+				Bettendorf, Iowa
 			</p>
 
 			<h1 class="wonk font-display text-[clamp(3.75rem,11vw,8.5rem)] font-medium leading-[0.92]">
@@ -34,9 +34,6 @@
 			<nav class="mt-10 flex flex-wrap gap-x-8 gap-y-3" aria-label="Quick links">
 				<a href="#projects" class="meta lk">↓ Project index</a>
 				<a href="#contact" class="meta lk">→ Get in touch</a>
-				<a href="/Lucas_Spain_Resume.pdf" download="Lucas_Spain_Resume.pdf" class="meta lk">
-					⤓ Résumé (PDF)
-				</a>
 			</nav>
 
 			<p class="meta mt-6 opacity-60">
@@ -47,7 +44,7 @@
 			</p>
 		</div>
 
-		<figure class="max-w-sm lg:col-span-5 lg:justify-self-end">
+		<div class="max-w-sm lg:col-span-5 lg:justify-self-end">
 			<img
 				src={portrait}
 				alt="Portrait of Lucas Spain"
@@ -55,8 +52,7 @@
 				fetchpriority="high"
 				class="plate aspect-[4/5] w-full object-cover"
 			/>
-			<figcaption class="meta mt-3 opacity-60">fig. 01 — the author, mid-deploy</figcaption>
-		</figure>
+		</div>
 	</div>
 </section>
 

@@ -170,7 +170,7 @@
 <section id="projects" class="border-t border-base-300 bg-base-200 py-20 md:py-28">
 	<div class="wrap">
 		<div use:animateOnScroll>
-			<SectionHead number="04" title="Project index" note="Personal work first, day job after" />
+			<SectionHead number="04" title="Project index" />
 		</div>
 
 		<nav class="mb-10 flex flex-wrap gap-x-6 gap-y-2" aria-label="Filter projects by category">

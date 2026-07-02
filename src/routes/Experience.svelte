@@ -93,7 +93,7 @@
 <section id="experience" class="py-20 md:py-28">
 	<div class="wrap">
 		<div use:animateOnScroll>
-			<SectionHead number="05" title="Experience" note="Where I've worked" />
+			<SectionHead number="05" title="Experience" />
 		</div>
 
 		<ol>
@@ -131,11 +131,5 @@
 				</li>
 			{/each}
 		</ol>
-
-		<p class="mt-12" use:animateOnScroll>
-			<a href="/Lucas_Spain_Resume.pdf" download="Lucas_Spain_Resume.pdf" class="meta lk">
-				⤓ Download the résumé (PDF)
-			</a>
-		</p>
 	</div>
 </section>

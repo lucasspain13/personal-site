@@ -44,10 +44,9 @@ test.describe('hero', () => {
 		await expect(page.locator('#hero h2')).toHaveText('Software & AI Engineer');
 	});
 
-	test('offers a downloadable resume', async ({ page }) => {
-		const resumeLink = page.locator('#hero').getByRole('link', { name: 'Résumé' });
-		await expect(resumeLink).toHaveAttribute('href', '/Lucas_Spain_Resume.pdf');
-		await expect(resumeLink).toHaveAttribute('download', 'Lucas_Spain_Resume.pdf');
+	test('does not link a resume download or mention job seeking', async ({ page }) => {
+		await expect(page.locator('a[href*="Resume"], a[download]')).toHaveCount(0);
+		await expect(page.getByText(/open to new opportunities/i)).toHaveCount(0);
 	});
 });
 
@@ -121,14 +120,15 @@ test.describe('mobile navigation', () => {
 
 	test('opens the menu and navigates to a section', async ({ page }) => {
 		const toggle = page.getByRole('button', { name: 'Toggle navigation menu' });
+		// Blur after the click: iOS Safari does not focus buttons on tap, so the
+		// menu must not depend on :focus-within to become visible.
 		await toggle.click();
+		await toggle.blur();
 		await expect(toggle).toHaveAttribute('aria-expanded', 'true');
 
-		await page
-			.locator('header')
-			.getByRole('list')
-			.getByRole('link', { name: 'About', exact: true })
-			.click();
+		const menu = page.locator('header').getByRole('list');
+		await expect(menu).toBeVisible();
+		await menu.getByRole('link', { name: 'About', exact: true }).click();
 		await expect(toggle).toHaveAttribute('aria-expanded', 'false');
 		await expect
 			.poll(async () => page.evaluate(() => window.scrollY), { timeout: 5000 })
