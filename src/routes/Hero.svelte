@@ -23,7 +23,7 @@
 				Lucas Spain
 			</h1>
 
-			<h2 class="meta mt-5 text-primary">Software &amp; AI Engineer</h2>
+			<h2 class="meta mt-5 text-primary">Software engineer specializing in generative AI</h2>
 
 			<p class="mt-8 max-w-xl text-lg leading-relaxed opacity-90">
 				I build web applications and AI agent systems: retrieval pipelines, LangGraph graphs, and

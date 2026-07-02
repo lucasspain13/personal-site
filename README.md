@@ -1,6 +1,6 @@
 # lucas-spain.com
 
-My personal site — a single-page portfolio for Lucas Spain, software & AI engineer.
+My personal site — a single-page portfolio for Lucas Spain, software engineer.
 
 Built with [SvelteKit](https://kit.svelte.dev/), [Tailwind CSS](https://tailwindcss.com/),
 and [daisyUI](https://daisyui.com/), and prerendered to static files via

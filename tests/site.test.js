@@ -6,10 +6,10 @@ test.beforeEach(async ({ page }) => {
 
 test.describe('page shell', () => {
 	test('has the expected title and meta description', async ({ page }) => {
-		await expect(page).toHaveTitle('Lucas Spain | Software & AI Engineer');
+		await expect(page).toHaveTitle('Lucas Spain | Software Engineer');
 		await expect(page.locator('meta[name="description"]')).toHaveAttribute(
 			'content',
-			/Lucas Spain is a software and AI engineer/
+			/Lucas Spain is a software engineer in the Quad Cities/
 		);
 	});
 
@@ -41,7 +41,9 @@ test.describe('page shell', () => {
 test.describe('hero', () => {
 	test('introduces Lucas Spain', async ({ page }) => {
 		await expect(page.getByRole('heading', { level: 1 })).toHaveText('Lucas Spain');
-		await expect(page.locator('#hero h2')).toHaveText('Software & AI Engineer');
+		await expect(page.locator('#hero h2')).toHaveText(
+			'Software engineer specializing in generative AI'
+		);
 	});
 
 	test('does not link a resume download or mention job seeking', async ({ page }) => {

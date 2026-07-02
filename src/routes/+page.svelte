@@ -7,11 +7,11 @@
 	import Projects from './Projects.svelte';
 	import Skills from './Skills.svelte';
 
-	const seoTitle = 'Lucas Spain | Software & AI Engineer';
+	const seoTitle = 'Lucas Spain | Software Engineer';
 	const seoDescription =
-		'Lucas Spain is a software and AI engineer in the Quad Cities, building AI applications with LangGraph, LangChain, and RAG, plus full-stack and cloud work.';
+		'Lucas Spain is a software engineer in the Quad Cities building full-stack web applications, generative AI systems with LangGraph and RAG, and the cloud infrastructure behind them.';
 	const seoKeywords =
-		'Lucas Spain, software engineer, AI engineer, LangChain, LangGraph, RAG, full stack developer, web development, cloud infrastructure, Iowa, Quad Cities';
+		'Lucas Spain, software engineer, generative AI, LangChain, LangGraph, RAG, full stack developer, web development, cloud infrastructure, Iowa, Quad Cities';
 </script>
 
 <svelte:head>
@@ -41,7 +41,7 @@
 			"@type": "Person",
 			"name": "Lucas Spain",
 			"url": "https://www.lucas-spain.com",
-			"jobTitle": "Software & AI Engineer",
+			"jobTitle": "Software Engineer",
 			"worksFor": {
 				"@type": "Organization",
 				"name": "John Deere"
@@ -56,7 +56,7 @@
 				"addressRegion": "IA",
 				"addressCountry": "USA"
 			},
-			"description": "Software and AI engineer based in the Quad Cities, building AI applications with LangGraph, LangChain, and RAG, alongside full-stack and cloud infrastructure work.",
+			"description": "Software engineer based in the Quad Cities, working across full-stack web development, generative AI, and cloud infrastructure.",
 			"sameAs": [
 				"https://github.com/lucasspain13",
 				"https://linkedin.com/in/lucas-spain-24189715a"
