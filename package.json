@@ -14,6 +14,8 @@
 		"test:unit": "vitest run"
 	},
 	"devDependencies": {
+		"@fontsource-variable/fraunces": "^5.2.9",
+		"@fontsource/ibm-plex-mono": "^5.2.7",
 		"@playwright/test": "1.56",
 		"@semantic-release/exec": "^7.1.0",
 		"@sveltejs/adapter-static": "^3.0.8",

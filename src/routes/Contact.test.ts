@@ -23,7 +23,7 @@ describe('Contact', () => {
 	it('disables the submit button until the form is valid', async () => {
 		render(Contact);
 
-		const submit = screen.getByRole('button', { name: 'Send Message' });
+		const submit = screen.getByRole('button', { name: /send message/i });
 		expect(submit).toBeDisabled();
 
 		await fillForm();
@@ -36,7 +36,7 @@ describe('Contact', () => {
 		await fillForm({ Email: 'not-an-email' });
 
 		expect(screen.getByText('Please enter a valid email address')).toBeInTheDocument();
-		expect(screen.getByRole('button', { name: 'Send Message' })).toBeDisabled();
+		expect(screen.getByRole('button', { name: /send message/i })).toBeDisabled();
 	});
 
 	it('requires a message of at least 10 characters', async () => {
@@ -45,7 +45,7 @@ describe('Contact', () => {
 		await fillForm({ Message: 'too short' });
 
 		expect(screen.getByText('Message must be at least 10 characters')).toBeInTheDocument();
-		expect(screen.getByRole('button', { name: 'Send Message' })).toBeDisabled();
+		expect(screen.getByRole('button', { name: /send message/i })).toBeDisabled();
 	});
 
 	it('posts to FormSubmit with the anti-spam fields in place', () => {

@@ -86,7 +86,7 @@ test.describe('projects', () => {
 test.describe('contact form', () => {
 	test('enables submit only once every field is valid', async ({ page }) => {
 		const form = page.locator('#contact form');
-		const submit = form.getByRole('button', { name: 'Send Message' });
+		const submit = form.getByRole('button', { name: /send message/i });
 		await expect(submit).toBeDisabled();
 
 		await form.getByLabel(/^Name/).fill('Ada Lovelace');
@@ -100,7 +100,7 @@ test.describe('contact form', () => {
 		const form = page.locator('#contact form');
 		await form.getByLabel(/^Email/).fill('not-an-email');
 		await expect(form.getByText('Please enter a valid email address')).toBeVisible();
-		await expect(form.getByRole('button', { name: 'Send Message' })).toBeDisabled();
+		await expect(form.getByRole('button', { name: /send message/i })).toBeDisabled();
 	});
 });
 
@@ -124,7 +124,11 @@ test.describe('mobile navigation', () => {
 		await toggle.click();
 		await expect(toggle).toHaveAttribute('aria-expanded', 'true');
 
-		await page.getByRole('list').getByRole('link', { name: 'About', exact: true }).click();
+		await page
+			.locator('header')
+			.getByRole('list')
+			.getByRole('link', { name: 'About', exact: true })
+			.click();
 		await expect(toggle).toHaveAttribute('aria-expanded', 'false');
 		await expect
 			.poll(async () => page.evaluate(() => window.scrollY), { timeout: 5000 })

@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { animateOnScroll } from '$lib/actions/animate';
+	import SectionHead from '$lib/components/SectionHead.svelte';
 
 	const experiences = [
 		{
 			title: 'Senior Software Engineer, AI Solutions Team',
 			company: 'John Deere',
-			period: '2025 to Present',
+			period: '2025–present',
 			location: 'Moline, IL',
 			description:
 				'Building AI applications: coding agents, data-processing graphs, and deployed models across AI/ML frameworks and cloud services.',
@@ -35,7 +36,7 @@
 		{
 			title: 'Software Engineer',
 			company: 'John Deere',
-			period: '2024 to 2025',
+			period: '2024–2025',
 			location: 'Moline, IL',
 			description:
 				'Built a full-stack web application with a React frontend and a Spring Boot backend.',
@@ -49,7 +50,7 @@
 		{
 			title: 'Information Technology Development Program (ITDP)',
 			company: 'John Deere',
-			period: '2022 to 2024',
+			period: '2022–2024',
 			location: 'Moline, IL',
 			description:
 				'Developed full-stack applications, managed cloud infrastructure, and owned site reliability, delivering features through secure coding, CI/CD, and infrastructure work.',
@@ -76,7 +77,7 @@
 		{
 			title: 'Graduate Teaching Assistant',
 			company: 'University of Iowa, Department of Computer Science',
-			period: 'August 2021 to May 2022',
+			period: '2021–2022',
 			location: 'Iowa City, IA',
 			description:
 				'Supported undergraduates in programming and logic by leading lab sections and giving feedback on their work.',
@@ -89,71 +90,52 @@
 	];
 </script>
 
-<section id="experience" class="page-section bg-base-200 py-20">
-	<div class="container mx-auto px-4">
-		<div class="mb-16 text-center" use:animateOnScroll>
-			<h2 class="section-title text-primary">Experience</h2>
-			<p class="section-subtitle">Where I've worked</p>
+<section id="experience" class="py-20 md:py-28">
+	<div class="wrap">
+		<div use:animateOnScroll>
+			<SectionHead number="05" title="Experience" note="Where I've worked" />
 		</div>
 
-		<div class="mx-auto max-w-3xl">
-			<div class="relative ml-4 space-y-12 border-l-2 border-primary/30 py-4">
-				{#each experiences as experience}
-					<div class="relative pl-10" use:animateOnScroll>
-						<div
-							class="absolute -left-[calc(0.5rem+1px)] top-1 h-4 w-4 rounded-full border-2 border-base-200 bg-primary ring-4 ring-primary/10"
-						></div>
-
-						<div class="rounded-lg bg-base-100 p-6 shadow-md transition-shadow hover:shadow-lg">
-							<div class="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-start">
-								<div>
-									<h3 class="text-xl font-bold text-primary">{experience.title}</h3>
-									<p class="text-base-content/90">{experience.company}</p>
-								</div>
-								<div class="flex flex-shrink-0 flex-wrap gap-2 text-sm sm:justify-end">
-									<span class="badge badge-secondary">{experience.period}</span>
-									<span class="badge badge-outline">{experience.location}</span>
-								</div>
-							</div>
-
-							<p class="mb-5 text-sm text-base-content/80">{experience.description}</p>
-
-							<h4 class="mb-2 text-sm font-semibold">Highlights</h4>
-							<ul class="mb-5 list-inside list-disc space-y-1 text-sm text-base-content/80">
-								{#each experience.achievements as achievement}
-									<li>{achievement}</li>
-								{/each}
-							</ul>
-
-							<div class="flex flex-wrap gap-2">
-								{#each experience.technologies as tech}
-									<span class="badge badge-accent badge-outline text-xs">{tech}</span>
-								{/each}
-							</div>
-						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
-
-		<div class="mt-16 text-center" use:animateOnScroll>
-			<a href="/Lucas_Spain_Resume.pdf" download="Lucas_Spain_Resume.pdf" class="btn btn-primary">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="h-5 w-5"
+		<ol>
+			{#each experiences as experience}
+				<li
+					class="grid gap-4 border-b border-base-300 py-10 first:pt-0 lg:grid-cols-12 lg:gap-8"
+					use:animateOnScroll
 				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
-					/>
-				</svg>
-				Download Résumé
+					<div class="lg:col-span-3">
+						<p class="meta text-primary">{experience.period}</p>
+						<p class="meta mt-1 opacity-60">{experience.location}</p>
+					</div>
+
+					<div class="lg:col-span-9">
+						<h3 class="font-display text-2xl font-medium md:text-3xl">{experience.title}</h3>
+						<p class="meta mt-1 opacity-60">{experience.company}</p>
+
+						<p class="mt-4 max-w-prose text-sm leading-relaxed opacity-90">
+							{experience.description}
+						</p>
+
+						<ul class="mt-4 max-w-prose space-y-1.5 text-sm leading-relaxed opacity-75">
+							{#each experience.achievements as achievement}
+								<li class="flex gap-3">
+									<span class="text-primary" aria-hidden="true">–</span>
+									<span>{achievement}</span>
+								</li>
+							{/each}
+						</ul>
+
+						<p class="meta mt-5 normal-case tracking-normal opacity-60">
+							stack: {experience.technologies.join(' · ')}
+						</p>
+					</div>
+				</li>
+			{/each}
+		</ol>
+
+		<p class="mt-12" use:animateOnScroll>
+			<a href="/Lucas_Spain_Resume.pdf" download="Lucas_Spain_Resume.pdf" class="meta lk">
+				⤓ Download the résumé (PDF)
 			</a>
-		</div>
+		</p>
 	</div>
 </section>

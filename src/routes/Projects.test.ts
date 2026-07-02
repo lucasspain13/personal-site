@@ -7,9 +7,9 @@ describe('Projects', () => {
 	it('shows every project under the default All filter', () => {
 		render(Projects);
 
-		expect(screen.getByRole('heading', { name: 'Pride in Motion' })).toBeInTheDocument();
-		expect(screen.getByRole('heading', { name: 'Joe, the AI Avatar' })).toBeInTheDocument();
-		expect(screen.getByRole('heading', { name: 'Scarf Pattern Generator' })).toBeInTheDocument();
+		expect(screen.getByRole('heading', { name: /Pride in Motion/ })).toBeInTheDocument();
+		expect(screen.getByRole('heading', { name: /Joe, the AI Avatar/ })).toBeInTheDocument();
+		expect(screen.getByRole('heading', { name: /Scarf Pattern Generator/ })).toBeInTheDocument();
 	});
 
 	it('renders a filter tab per category plus All', () => {
@@ -26,10 +26,10 @@ describe('Projects', () => {
 
 		await user.click(screen.getByTestId('filter-AI'));
 
-		expect(screen.getByRole('heading', { name: 'Gatsby: Local Voice Assistant' })).toBeVisible();
-		expect(screen.getByRole('heading', { name: 'Dealer Assistant' })).toBeVisible();
-		expect(screen.queryByRole('heading', { name: 'Pride in Motion' })).not.toBeInTheDocument();
-		expect(screen.queryByRole('heading', { name: 'CSRF Protection' })).not.toBeInTheDocument();
+		expect(screen.getByRole('heading', { name: /Gatsby: Local Voice Assistant/ })).toBeVisible();
+		expect(screen.getByRole('heading', { name: /Dealer Assistant/ })).toBeVisible();
+		expect(screen.queryByRole('heading', { name: /Pride in Motion/ })).not.toBeInTheDocument();
+		expect(screen.queryByRole('heading', { name: /CSRF Protection/ })).not.toBeInTheDocument();
 	});
 
 	it('hides the work section when no work project matches the filter', async () => {
@@ -40,13 +40,13 @@ describe('Projects', () => {
 		await user.click(screen.getByTestId('filter-Other'));
 
 		expect(screen.queryByRole('heading', { name: 'From My Day Job' })).not.toBeInTheDocument();
-		expect(screen.getByRole('heading', { name: 'Scarf Pattern Generator' })).toBeInTheDocument();
+		expect(screen.getByRole('heading', { name: /Scarf Pattern Generator/ })).toBeInTheDocument();
 	});
 
 	it('only links repositories that are public', () => {
 		render(Projects);
 
-		const codeLinks = screen.getAllByRole('link', { name: /View Code/ });
+		const codeLinks = screen.getAllByRole('link', { name: /view code/i });
 		for (const link of codeLinks) {
 			expect(link.getAttribute('href')).toMatch(/^https:\/\/github\.com\/lucasspain13\//);
 		}

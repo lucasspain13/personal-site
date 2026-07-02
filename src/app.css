@@ -1,4 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+@import '@fontsource-variable/fraunces/full.css';
+@import '@fontsource-variable/fraunces/full-italic.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/400-italic.css';
+@import '@fontsource/ibm-plex-mono/500.css';
 
 @tailwind base;
 @tailwind components;
@@ -6,17 +10,60 @@
 
 @layer base {
 	html {
-		font-family: 'Poppins', system-ui, sans-serif;
+		font-family:
+			ui-sans-serif,
+			system-ui,
+			-apple-system,
+			'Segoe UI',
+			Roboto,
+			'Helvetica Neue',
+			sans-serif;
+	}
+
+	::selection {
+		background-color: theme('colors.primary');
+		color: theme('colors.primary-content');
 	}
 }
 
-/* Prevent horizontal overflow and keep media responsive. */
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
+@layer components {
+	.wrap {
+		@apply mx-auto w-full max-w-6xl px-5 md:px-10;
+	}
+
+	/* Mono caption style used for labels, captions, and metadata. */
+	.meta {
+		@apply font-mono text-xs uppercase tracking-[0.18em];
+	}
+
+	/* Underline-on-hover for inline text links. */
+	.lk {
+		@apply underline decoration-base-300 decoration-1 underline-offset-4 transition-colors hover:decoration-primary hover:text-primary;
+	}
+
+	.animate-on-scroll {
+		opacity: 0;
+		transform: translateY(8px);
+		transition:
+			opacity 0.45s ease-out,
+			transform 0.45s ease-out;
+	}
+
+	.animate-on-scroll.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.animate-on-scroll {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+	}
 }
 
+/* Keep media responsive by default. */
 img,
 video,
 iframe {

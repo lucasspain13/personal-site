@@ -1,24 +1,30 @@
 import { render, screen } from '@testing-library/svelte';
-import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import Skills from './Skills.svelte';
 
+const categories = [
+	'AI & Machine Learning',
+	'Frontend Development',
+	'Backend Development',
+	'DevOps & Cloud',
+	'Tools & Practices'
+];
+
 describe('Skills', () => {
-	it('shows the AI & Machine Learning category by default', () => {
+	it('shows every skill category at once', () => {
 		render(Skills);
 
-		expect(screen.getByRole('heading', { name: 'AI & Machine Learning' })).toBeInTheDocument();
-		expect(screen.getByText('LangGraph')).toBeInTheDocument();
+		for (const category of categories) {
+			expect(screen.getByRole('heading', { name: category })).toBeInTheDocument();
+		}
 	});
 
-	it('switches categories when one is selected', async () => {
-		const user = userEvent.setup();
+	it('lists skills inside their group', () => {
 		render(Skills);
 
-		await user.click(screen.getByRole('button', { name: /Frontend Development/ }));
-
-		expect(screen.getByRole('heading', { name: 'Frontend Development' })).toBeInTheDocument();
-		expect(screen.getByText('SvelteKit')).toBeInTheDocument();
-		expect(screen.queryByText('LangGraph')).not.toBeInTheDocument();
+		expect(screen.getByText(/LangGraph/)).toBeInTheDocument();
+		expect(screen.getByText(/SvelteKit/)).toBeInTheDocument();
+		expect(screen.getByText(/Terraform/)).toBeInTheDocument();
+		expect(screen.getByText(/semantic-release/)).toBeInTheDocument();
 	});
 });

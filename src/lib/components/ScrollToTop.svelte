@@ -14,20 +14,11 @@
 {#if showButton}
 	<button
 		on:click={scrollToTop}
-		class="btn btn-circle btn-primary fixed bottom-6 right-6 z-50 shadow-lg transition-transform duration-300 hover:scale-110"
+		class="meta fixed bottom-5 right-5 z-50 border border-base-content bg-base-100 px-3 py-2 transition-colors hover:bg-base-content hover:text-base-100"
 		aria-label="Scroll to top"
-		in:fly={{ y: 20, duration: 300 }}
-		out:fade={{ duration: 200 }}
+		in:fly={{ y: 12, duration: 250 }}
+		out:fade={{ duration: 150 }}
 	>
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke-width="2"
-			stroke="currentColor"
-			class="h-6 w-6"
-		>
-			<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-		</svg>
+		↑ top
 	</button>
 {/if}

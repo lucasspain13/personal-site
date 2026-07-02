@@ -20,7 +20,7 @@
 	<meta name="keywords" content={seoKeywords} />
 	<meta name="author" content="Lucas Spain" />
 	<meta name="robots" content="index, follow" />
-	<meta name="theme-color" content="#162440" />
+	<meta name="theme-color" content="#F5F3EE" />
 
 	<link rel="canonical" href="https://www.lucas-spain.com/" />
 

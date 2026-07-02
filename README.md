@@ -39,6 +39,13 @@ npm test                  # both
 Unit tests live next to the code they cover (`*.test.ts`); integration tests are in
 `tests/`.
 
+## Design
+
+Editorial, print-inspired layout: paper/ink palette with a vermilion accent, headings set
+in [Fraunces](https://fonts.google.com/specimen/Fraunces) (variable, with its SOFT/WONK
+axes used on the hero), metadata in IBM Plex Mono. Both fonts are self-hosted via
+Fontsource. Light and dark themes are defined as daisyUI themes in `tailwind.config.js`.
+
 ## Structure
 
 The whole site lives on one route (`src/routes/+page.svelte`), composed of section
