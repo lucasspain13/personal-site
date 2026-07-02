@@ -150,12 +150,6 @@
 	];
 
 	let activeCategory = skillCategories[0];
-
-	type SkillCategory = (typeof skillCategories)[0];
-
-	function setActiveCategory(category: SkillCategory) {
-		activeCategory = category;
-	}
 </script>
 
 <section id="skills" class="page-section bg-base-200 py-20">
@@ -166,7 +160,6 @@
 		</div>
 
 		<div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-			<!-- Category nav -->
 			<div class="col-span-1">
 				<div class="w-full rounded-lg bg-base-100 p-6 shadow-md" use:animateOnScroll>
 					<h3 class="mb-6 text-xl font-bold">Categories</h3>
@@ -178,7 +171,7 @@
 									category.name
 										? 'bg-primary text-primary-content'
 										: 'hover:bg-base-200'}"
-									on:click={() => setActiveCategory(category)}
+									on:click={() => (activeCategory = category)}
 								>
 									<span>{@html category.icon}</span>
 									<span class="font-medium">{category.name}</span>
@@ -189,7 +182,6 @@
 				</div>
 			</div>
 
-			<!-- Skill tags -->
 			<div class="col-span-1 lg:col-span-2">
 				{#key activeCategory}
 					<div class="rounded-lg bg-base-100 p-6 shadow-md sm:p-8" in:fade={{ duration: 250 }}>

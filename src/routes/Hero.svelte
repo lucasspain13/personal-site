@@ -2,7 +2,6 @@
 	import portrait from '$lib/images/portrait.png';
 	import { onMount } from 'svelte';
 
-	// Particle animation
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D | null;
 	let particles: Particle[] = [];
@@ -98,20 +97,16 @@
 		animationFrame = requestAnimationFrame(animate);
 	}
 
-	function handleResize() {
-		sizeCanvas();
-	}
-
 	onMount(() => {
 		const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		if (canvas && !reduceMotion) {
 			ctx = canvas.getContext('2d');
 			initParticles();
-			window.addEventListener('resize', handleResize);
+			window.addEventListener('resize', sizeCanvas);
 		}
 
 		return () => {
-			window.removeEventListener('resize', handleResize);
+			window.removeEventListener('resize', sizeCanvas);
 			if (animationFrame) cancelAnimationFrame(animationFrame);
 		};
 	});
@@ -121,7 +116,6 @@
 	id="hero"
 	class="relative flex min-h-screen items-center justify-center overflow-hidden pb-24 lg:pb-0"
 >
-	<!-- Background -->
 	<div class="absolute inset-0 isolate overflow-hidden">
 		<canvas bind:this={canvas} class="absolute inset-0 h-full w-full opacity-50"></canvas>
 		<div class="hero-bg absolute inset-0"></div>
@@ -133,7 +127,6 @@
 		<div
 			class="flex flex-col items-center justify-center gap-10 text-center lg:flex-row-reverse lg:gap-16 lg:text-left"
 		>
-			<!-- Portrait -->
 			<div class="relative flex w-full max-w-xs justify-center sm:max-w-sm lg:w-1/2 lg:justify-end">
 				<div class="absolute inset-x-0 bottom-0 top-1/4 rounded-2xl bg-secondary/40"></div>
 				<img
@@ -146,7 +139,6 @@
 				/>
 			</div>
 
-			<!-- Text -->
 			<div class="flex w-full max-w-2xl flex-col items-center lg:w-1/2 lg:items-start">
 				<p class="reveal mb-2 font-medium text-accent" style="--d: 0ms">Hello, I'm</p>
 				<h1 class="reveal text-4xl font-bold text-primary md:text-6xl" style="--d: 80ms">
@@ -170,7 +162,11 @@
 				>
 					<a href="#projects" class="btn btn-primary">View Projects</a>
 					<a href="#contact" class="btn btn-outline">Get in Touch</a>
-					<a href="/Lucas_Spain_Resume.pdf" download="Lucas_Spain_Resume.pdf" class="btn btn-outline">
+					<a
+						href="/Lucas_Spain_Resume.pdf"
+						download="Lucas_Spain_Resume.pdf"
+						class="btn btn-outline"
+					>
 						Résumé
 					</a>
 				</div>
@@ -192,7 +188,6 @@
 		</div>
 	</div>
 
-	<!-- Scroll indicator -->
 	<a
 		href="#about"
 		class="absolute inset-x-0 bottom-6 z-20 mx-auto flex animate-bounce justify-center text-primary opacity-80 transition-opacity hover:opacity-100"

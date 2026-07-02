@@ -16,7 +16,6 @@
 	}
 
 	const projects: Project[] = [
-		// Personal projects
 		{
 			title: 'Pride in Motion',
 			description:
@@ -91,7 +90,6 @@
 			repoUrl: 'https://github.com/lucasspain13/plex-uploader',
 			repoPrivate: true
 		},
-		// Work projects
 		{
 			title: 'Joe, the AI Avatar',
 			description:
@@ -188,10 +186,6 @@
 
 	let activeFilter = 'All';
 
-	function setFilter(filter: string) {
-		activeFilter = filter;
-	}
-
 	$: categories = ['All', ...new Set(projects.map((p) => p.category))];
 	$: personalProjects = projects.filter(
 		(p) => p.type !== 'work' && (activeFilter === 'All' || p.category === activeFilter)
@@ -208,13 +202,12 @@
 			<p class="section-subtitle">A mix of personal projects and work</p>
 		</div>
 
-		<!-- Filters -->
 		<div class="mb-12 flex justify-center" use:animateOnScroll>
 			<div class="tabs-boxed tabs flex flex-wrap justify-center gap-1 p-2">
 				{#each categories as category}
 					<button
 						class="tab {activeFilter === category ? 'tab-active' : ''}"
-						on:click={() => setFilter(category)}
+						on:click={() => (activeFilter = category)}
 						data-testid="filter-{category}"
 					>
 						{category}
@@ -223,7 +216,6 @@
 			</div>
 		</div>
 
-		<!-- Personal projects -->
 		<div
 			class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
 			use:staggerChildren={{ selector: '.project-card', staggerTime: 120 }}
@@ -235,7 +227,6 @@
 					animate:flip={{ duration: 400 }}
 					in:fade={{ duration: 300 }}
 				>
-					<!-- Banner -->
 					<div
 						class="relative flex h-32 items-center justify-center bg-gradient-to-br {style.gradient} text-white/90"
 					>
@@ -317,7 +308,6 @@
 			{/each}
 		</div>
 
-		<!-- Work projects -->
 		{#if workProjects.length > 0}
 			<div class="mt-20">
 				<h3 class="mb-6 text-center text-2xl font-bold">From My Day Job</h3>
@@ -351,7 +341,6 @@
 			</div>
 		{/if}
 
-		<!-- Call to action -->
 		<div class="mt-16 text-center" use:animateOnScroll>
 			<p class="mb-6 opacity-80">Want to see more?</p>
 			<a

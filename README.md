@@ -28,6 +28,17 @@ npm run lint       # prettier + eslint
 npm run format     # prettier --write
 ```
 
+## Tests
+
+```bash
+npm run test:unit         # Vitest — actions and components (jsdom)
+npm run test:integration  # Playwright — builds and tests the real site
+npm test                  # both
+```
+
+Unit tests live next to the code they cover (`*.test.ts`); integration tests are in
+`tests/`.
+
 ## Structure
 
 The whole site lives on one route (`src/routes/+page.svelte`), composed of section

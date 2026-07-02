@@ -13,98 +13,53 @@ interface StaggerParams extends AnimateParams {
 	staggerTime?: number;
 }
 
-/**
- * Svelte action for animating elements when they enter the viewport
- */
-export function animateOnScroll(node: HTMLElement, params: AnimateParams = {}): ActionReturn {
-	const {
-		threshold = 0.1,
-		root = null,
-		rootMargin = '0px',
-		animationClass = 'visible',
-		once = true
-	} = params;
+/** Adds `animationClass` to `node` when it scrolls into view. */
+export function animateOnScroll(
+	node: HTMLElement,
+	params: AnimateParams = {}
+): ActionReturn<AnimateParams> {
+	let observer: IntersectionObserver;
 
-	// Create the observer
-	const observer = new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
-				// Add class when element enters viewport
-				if (entry.isIntersecting) {
-					node.classList.add(animationClass);
+	function observe(currentParams: AnimateParams) {
+		const {
+			threshold = 0.1,
+			root = null,
+			rootMargin = '0px',
+			animationClass = 'visible',
+			once = true
+		} = currentParams;
 
-					// If once is true, unobserve after animation
-					if (once) {
-						observer.unobserve(node);
+		observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						node.classList.add(animationClass);
+						if (once) observer.unobserve(node);
+					} else if (!once) {
+						node.classList.remove(animationClass);
 					}
-				} else if (!once) {
-					// Remove class when element leaves viewport (if not once)
-					node.classList.remove(animationClass);
 				}
-			});
-		},
-		{
-			threshold,
-			root,
-			rootMargin
-		}
-	);
+			},
+			{ threshold, root, rootMargin }
+		);
+		observer.observe(node);
+	}
 
-	// Add base animation class
 	node.classList.add('animate-on-scroll');
-
-	// Start observing
-	observer.observe(node);
+	observe(params);
 
 	return {
-		// Clean up when the element is removed
-		destroy() {
-			if (observer) {
-				observer.disconnect();
-			}
-		},
-
-		// Handle updates to parameters
 		update(newParams: AnimateParams = {}) {
-			const {
-				threshold = 0.1,
-				root = null,
-				rootMargin = '0px',
-				animationClass = 'visible',
-				once = true
-			} = newParams;
-
 			observer.disconnect();
-
-			const newObserver = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting) {
-							node.classList.add(animationClass);
-
-							if (once) {
-								newObserver.unobserve(node);
-							}
-						} else if (!once) {
-							node.classList.remove(animationClass);
-						}
-					});
-				},
-				{
-					threshold,
-					root,
-					rootMargin
-				}
-			);
-
-			newObserver.observe(node);
+			observe(newParams);
+		},
+		destroy() {
+			observer.disconnect();
 		}
 	};
 }
 
-/**
- * Svelte action for staggered animations of child elements
- */
+/** Staggers `animationClass` across children matching `selector` when `node` scrolls into view. */
 export function staggerChildren(node: HTMLElement, params: StaggerParams = {}): ActionReturn {
 	const {
 		selector = '*',
@@ -116,58 +71,34 @@ export function staggerChildren(node: HTMLElement, params: StaggerParams = {}): 
 		once = true
 	} = params;
 
-	// Get all children matching the selector
 	const children = Array.from(node.querySelectorAll(selector));
-
-	// Add base animation class to all children
 	children.forEach((child, index) => {
 		child.classList.add('animate-on-scroll');
-		// Add custom delay based on index
 		if (child instanceof HTMLElement) {
 			child.style.transitionDelay = `${index * staggerTime}ms`;
 		}
 	});
 
-	// Create the observer
 	const observer = new IntersectionObserver(
 		(entries) => {
-			entries.forEach((entry) => {
+			for (const entry of entries) {
 				if (entry.isIntersecting) {
-					// Stagger the animation of each child
 					children.forEach((child, index) => {
-						setTimeout(() => {
-							child.classList.add(animationClass);
-						}, index * staggerTime);
+						setTimeout(() => child.classList.add(animationClass), index * staggerTime);
 					});
-
-					// If once is true, unobserve after animation
-					if (once) {
-						observer.unobserve(node);
-					}
+					if (once) observer.unobserve(node);
 				} else if (!once) {
-					// Remove class when element leaves viewport (if not once)
-					children.forEach((child) => {
-						child.classList.remove(animationClass);
-					});
+					children.forEach((child) => child.classList.remove(animationClass));
 				}
-			});
+			}
 		},
-		{
-			threshold,
-			root,
-			rootMargin
-		}
+		{ threshold, root, rootMargin }
 	);
-
-	// Start observing
 	observer.observe(node);
 
 	return {
-		// Clean up when the element is removed
 		destroy() {
-			if (observer) {
-				observer.disconnect();
-			}
+			observer.disconnect();
 		}
 	};
 }

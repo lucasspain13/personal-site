@@ -2,7 +2,6 @@
 	import { animateOnScroll } from '$lib/actions/animate';
 	import portrait from '$lib/images/portrait-2.jpeg';
 
-	// Career journey milestones
 	const careerJourney = [
 		{
 			year: '2021-2022',
@@ -32,17 +31,13 @@
 
 <section id="about" class="page-section bg-base-100 py-20">
 	<div class="container mx-auto px-4">
-		<!-- Section header -->
 		<div class="text-center mb-16" use:animateOnScroll>
 			<h2 class="section-title text-primary">About Me</h2>
 			<p class="section-subtitle">From full-stack engineering to AI</p>
 		</div>
 
-		<!-- Centered single-column layout -->
 		<div class="max-w-4xl mx-auto">
-			<!-- About content -->
 			<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-16">
-				<!-- Left column: Image and quick facts -->
 				<div class="about-image-container md:sticky md:top-24" use:animateOnScroll>
 					<div class="relative mx-auto max-w-md">
 						<img
@@ -52,7 +47,6 @@
 							class="rounded-lg shadow-xl w-full object-cover aspect-[4/5]"
 						/>
 
-						<!-- Decorative elements (Optional, adjust if needed) -->
 						<div
 							class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-secondary opacity-50 -z-10"
 						></div>
@@ -61,7 +55,6 @@
 						></div>
 					</div>
 
-					<!-- Quick facts below image -->
 					<div class="bg-base-200 rounded-lg p-6 shadow-lg mt-8 max-w-md mx-auto">
 						<h3 class="text-xl font-bold mb-4">Quick Facts</h3>
 						<ul class="space-y-2 text-sm">
@@ -151,7 +144,6 @@
 					</div>
 				</div>
 
-				<!-- Right column: Bio and career journey -->
 				<div class="about-content" use:animateOnScroll>
 					<div>
 						<h3 class="text-2xl font-bold mb-4">My Story</h3>
@@ -173,17 +165,14 @@
 							</p>
 						</div>
 
-						<!-- Career journey -->
 						<h3 class="text-2xl font-bold mb-8">Career Journey</h3>
 						<div class="relative border-l-2 border-primary/30 ml-4 space-y-12 py-4">
 							{#each careerJourney as milestone}
 								<div class="milestone relative pl-10">
-									<!-- Timeline Dot -->
 									<div
 										class="absolute -left-[calc(0.5rem+1px)] top-1 w-4 h-4 bg-primary rounded-full border-2 border-base-100 ring-4 ring-primary/10"
 									></div>
 
-									<!-- Content -->
 									<div class="ml-4">
 										<span class="badge badge-outline badge-primary mb-1">{milestone.year}</span>
 										<h4 class="text-lg font-semibold text-primary">{milestone.title}</h4>

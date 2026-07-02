@@ -1,6 +1,6 @@
 <script>
+	import { clickAway } from '$lib/actions/clickAway';
 	import ThemeToggle from '$lib/components/ThemeToggle.svelte';
-	import { clickAway } from '../actions';
 
 	let isOpen = false;
 
@@ -19,10 +19,8 @@
 
 <header class="sticky top-0 z-50 w-full border-b border-base-300/60 bg-base-100/80 backdrop-blur">
 	<nav class="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
-		<!-- Brand -->
 		<a href="#hero" class="text-lg font-bold tracking-tight text-primary">Lucas&nbsp;Spain</a>
 
-		<!-- Desktop nav -->
 		<div class="hidden items-center gap-1 md:flex">
 			{#each links as link}
 				<a
@@ -34,13 +32,11 @@
 			{/each}
 		</div>
 
-		<!-- Right-side controls -->
 		<div class="flex items-center gap-2">
 			<ThemeToggle />
 
 			<a href="#contact" class="btn btn-primary btn-sm hidden sm:inline-flex">Contact Me</a>
 
-			<!-- Mobile menu -->
 			<div class="dropdown dropdown-end md:hidden" use:clickAway={closeMenu}>
 				<button
 					type="button"

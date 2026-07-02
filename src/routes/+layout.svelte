@@ -17,9 +17,9 @@
 </div>
 
 <style>
-	/* Add any global styles here */
 	:global(html) {
-		scroll-padding-top: 5rem; /* Ensures anchors account for fixed header */
+		/* Keep anchor targets clear of the sticky header. */
+		scroll-padding-top: 5rem;
 		scroll-behavior: smooth;
 	}
 
@@ -37,7 +37,6 @@
 	:global(.page-section) {
 		padding-top: 4rem;
 		padding-bottom: 4rem;
-		/* Removed horizontal padding for edge-to-edge mobile */
 	}
 
 	@media (min-width: 768px) {

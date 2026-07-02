@@ -22,23 +22,19 @@
 	<meta name="robots" content="index, follow" />
 	<meta name="theme-color" content="#162440" />
 
-	<!-- Canonical URL -->
 	<link rel="canonical" href="https://www.lucas-spain.com/" />
 
-	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="https://www.lucas-spain.com/" />
 	<meta property="og:title" content={seoTitle} />
 	<meta property="og:description" content={seoDescription} />
 	<meta property="og:image" content="/images/portrait.png" />
 
-	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content={seoTitle} />
 	<meta name="twitter:description" content={seoDescription} />
 	<meta name="twitter:image" content="/images/portrait.png" />
 
-	<!-- Structured Data for SEO -->
 	<script type="application/ld+json">
 		{
 			"@context": "https://schema.org",

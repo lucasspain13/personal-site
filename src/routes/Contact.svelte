@@ -6,22 +6,18 @@
 	// Set after mount so it works with prerendering (no `window` at build time).
 	let nextUrl = 'https://www.lucas-spain.com/?success=true';
 
-	// Form state
 	let name = '';
 	let email = '';
 	let subject = '';
 	let message = '';
 	let submitSuccess = false;
-	let submitError = false;
 
-	// Form validation
 	$: isNameValid = name.length > 0;
 	$: isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 	$: isSubjectValid = subject.length > 0;
 	$: isMessageValid = message.length > 10;
 	$: isFormValid = isNameValid && isEmailValid && isSubjectValid && isMessageValid;
 
-	// Contact information
 	const contactInfo = [
 		{
 			type: 'Email',
@@ -49,22 +45,6 @@
 		}
 	];
 
-	// Form validation function
-	function validateForm() {
-		if (!isFormValid) {
-			alert('Please fill out all required fields correctly.');
-			return false;
-		}
-		return true;
-	}
-
-	// Handle form submission
-	function handleSubmit(event: SubmitEvent) {
-		if (!validateForm()) {
-			event.preventDefault();
-		}
-	}
-
 	onMount(() => {
 		nextUrl = `${window.location.origin}/?success=true`;
 
@@ -77,32 +57,23 @@
 
 <section id="contact" class="page-section bg-base-100 py-20">
 	<div class="container mx-auto px-4">
-		<!-- Section header -->
 		<div class="text-center mb-16" use:animateOnScroll>
 			<h2 class="section-title text-primary">Get In Touch</h2>
 			<p class="section-subtitle">The best ways to reach me</p>
 		</div>
 
-		<!-- Contact content -->
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-			<!-- Left column: Contact form -->
 			<div class="contact-form" use:animateOnScroll>
 				<div class="bg-base-200 rounded-lg shadow-md p-8">
 					<h3 class="text-2xl font-bold mb-6">Send Me a Message</h3>
 
-					<form
-						action="https://formsubmit.co/lnsjds@gmail.com"
-						method="POST"
-						class="space-y-6"
-						on:submit={handleSubmit}
-					>
-						<!-- Hidden FormSubmit fields -->
+					<form action="https://formsubmit.co/lnsjds@gmail.com" method="POST" class="space-y-6">
 						<input type="hidden" name="_subject" value="New message from your website" />
 						<input type="hidden" name="_template" value="table" />
 						<input type="hidden" name="_next" value={nextUrl} />
 						<input type="hidden" name="_captcha" value="true" />
 						<input type="text" name="_honey" style="display:none" />
-						<!-- Name input -->
+
 						<div class="form-control w-full">
 							<label class="label" for="name">
 								<span class="label-text font-medium">Name</span>
@@ -128,7 +99,6 @@
 							{/if}
 						</div>
 
-						<!-- Email input -->
 						<div class="form-control w-full">
 							<label class="label" for="email">
 								<span class="label-text font-medium">Email</span>
@@ -155,7 +125,6 @@
 							{/if}
 						</div>
 
-						<!-- Subject input -->
 						<div class="form-control w-full">
 							<label class="label" for="subject">
 								<span class="label-text font-medium">Subject</span>
@@ -182,7 +151,6 @@
 							{/if}
 						</div>
 
-						<!-- Message input -->
 						<div class="form-control w-full">
 							<label class="label" for="message">
 								<span class="label-text font-medium">Message</span>
@@ -210,7 +178,6 @@
 							{/if}
 						</div>
 
-						<!-- Submit button -->
 						<button
 							type="submit"
 							class="btn btn-primary w-full mt-6"
@@ -220,7 +187,6 @@
 							Send Message
 						</button>
 
-						<!-- Success/Error messages -->
 						{#if submitSuccess}
 							<div class="alert alert-success mt-4" transition:fade>
 								<svg
@@ -238,29 +204,10 @@
 								<span>Your message has been sent successfully!</span>
 							</div>
 						{/if}
-
-						{#if submitError}
-							<div class="alert alert-error mt-4" transition:fade>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									class="stroke-current shrink-0 h-6 w-6"
-									fill="none"
-									viewBox="0 0 24 24"
-									><path
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-									/></svg
-								>
-								<span>There was an error sending your message. Please try again.</span>
-							</div>
-						{/if}
 					</form>
 				</div>
 			</div>
 
-			<!-- Right column: Contact information -->
 			<div class="contact-info" use:animateOnScroll>
 				<div class="bg-base-200 rounded-lg shadow-md p-8 mb-8">
 					<h3 class="text-2xl font-bold mb-6">Contact Information</h3>
@@ -294,7 +241,6 @@
 					</ul>
 				</div>
 
-				<!-- Education -->
 				<div class="bg-base-200 rounded-lg shadow-md p-8">
 					<h3 class="text-xl font-bold mb-4">Education</h3>
 					<div>
